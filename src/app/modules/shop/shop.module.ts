@@ -25,6 +25,7 @@ import { PageCompareComponent } from './pages/page-compare/page-compare.componen
 import { PageProductComponent } from './pages/page-product/page-product.component';
 import { PageTrackOrderComponent } from './pages/page-track-order/page-track-order.component';
 import { PageWishlistComponent } from './pages/page-wishlist/page-wishlist.component';
+import { PageLevelviewComponent } from './pages/page-levelview/page-levelview.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { PageWishlistComponent } from './pages/page-wishlist/page-wishlist.compo
         PageCompareComponent,
         PageProductComponent,
         PageTrackOrderComponent,
-        PageWishlistComponent
+        PageWishlistComponent,
+        PageLevelviewComponent
     ],
     imports: [
         // modules (angular)

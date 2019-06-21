@@ -8,6 +8,7 @@ import { PageCompareComponent } from './pages/page-compare/page-compare.componen
 import { PageTrackOrderComponent } from './pages/page-track-order/page-track-order.component';
 import { CheckoutGuard } from './guards/checkout.guard';
 import { PageProductComponent } from './pages/page-product/page-product.component';
+import { PageLevelviewComponent } from './pages/page-levelview/page-levelview.component';
 
 const routes: Routes = [
     {
@@ -80,6 +81,14 @@ const routes: Routes = [
     {
         path: 'product-sidebar',
         component: PageProductComponent,
+        data: {
+            layout: 'sidebar',
+            sidebarPosition: 'start'
+        }
+    },
+    {
+        path: 'product-levelview',
+        component: PageLevelviewComponent,
         data: {
             layout: 'sidebar',
             sidebarPosition: 'start'

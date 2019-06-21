@@ -30,6 +30,7 @@ import { RootComponent } from './components/root/root.component';
 import { PageHomeOneComponent } from './pages/page-home-one/page-home-one.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.component';
+import { GlobalParams } from './shared/services/CorparateServices/globalparams.service';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.compon
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
+        GlobalParams
     ],
     bootstrap: [AppComponent]
 })
