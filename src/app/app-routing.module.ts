@@ -33,6 +33,10 @@ export function makeRoutes(homeComponent: Type<any>): Routes {
             loadChildren: './modules/site/site.module#SiteModule'
         },
         {
+            path: 'process',
+            loadChildren: './process/process.module#ProcessModule'
+        },
+        {
             path: '**',
             component: PageNotFoundComponent
         }

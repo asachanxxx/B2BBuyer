@@ -6,23 +6,25 @@
 <div class="block">
     <div class="container">
         <div class="row">
+            <div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6 d-flex">
                 <div class="card flex-grow-1 mb-md-0">
                     <div class="card-body">
-                        <h3 class="card-title">Login</h3>
+                        <h3 class="card-title header-style mb-3">existing customers</h3>
                         <form>
-                            <div class="form-group">
-                                <label>Email address</label>
-                                <input type="email" class="form-control" placeholder="Enter email">
+                            <div class="form-group mb-2">
+                                <label class="font-weight-bold">Email address</label>
+                                <input type="email" class="form-control" placeholder="">
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
-                                <small class="form-text text-muted">
-                                    <a href="">Forgotten Password</a>
-                                </small>
+                                <label class="font-weight-bold">Password</label>
+                                <input type="password" class="form-control" placeholder="">
+
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <div class="form-check">
                                     <span class="form-check-input input-check">
                                         <span class="input-check__body">
@@ -34,7 +36,34 @@
                                     <label class="form-check-label" for="login-remember">Remember Me</label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Login</button>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <span class="form-check-input input-check">
+                                        <span class="input-check__body">
+                                            <input class="input-check__input" type="checkbox" id="login-subscribe">
+                                            <span class="input-check__box"></span>
+                                            <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
+                                        </span>
+                                    </span>
+                                    <label class="form-check-label" for="login-remember">Subscribe for exclusive e-mail
+                                        offers and discounts</label> </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <small class="form-text text-muted">
+                                        <a href="">Forgotten Password</a>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button type="submit"
+                                        class="btn btn-primary  mt-md-3 mt-lg-4 text-lowercase float-right"> Log
+                                        On ►</button>
+                                </div>
+                            </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -42,22 +71,24 @@
             <div class="col-md-6 d-flex mt-4 mt-md-0">
                 <div class="card flex-grow-1 mb-0">
                     <div class="card-body">
-                        <h3 class="card-title">Register</h3>
-                        <form>
-                            <div class="form-group">
-                                <label>Email address</label>
-                                <input type="email" class="form-control" placeholder="Enter email">
+                        <h3 class="card-title header-style mb-4">New Customers</h3>
+
+                        <p>A NeweggBusiness account is required for logon and purchasing.</p>
+                        <p>With an account, you can leverage Web site functions and benefits that include:</p>
+                        <ul>
+                            <li>Leverage our Account Executive expertise</li>
+                            <li>View order history and manage returns</li>
+                            <li>Join our Rewards Loyalty Program</li>
+                            <li>Create and manage custom "To-Buy" lists</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" (click)="create_new_account()"
+                                    class="btn btn-primary mt-md-3 mt-lg-4 text-lowercase float-right">Create an Account
+                                    ►</button>
                             </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label>Repeat Password</label>
-                                <input type="password" class="form-control" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary mt-2 mt-md-3 mt-lg-4">Register</button>
-                        </form>
+                        </div>
+
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalparams.service';
 
 @Component({
     selector: 'app-login',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
     styleUrls: ['./page-login.component.scss']
 })
 export class PageLoginComponent {
-    constructor() { }
+
+    constructor(private global:GlobalParams) { }
+
+
+
+    create_new_account(){
+
+        
+    }
 }

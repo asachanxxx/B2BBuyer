@@ -5,6 +5,15 @@ import { LoggedUserProfile } from '../../models/loggeduser.model';
 export class GlobalParams{
 
     
+    private _BusinessShortName : string = "B2BBisinezer";
+    public get BusinessShortName() : string {
+        return this._BusinessShortName;
+    }
+    public set BusinessShortName(v : string) {
+        this._BusinessShortName = v;
+    }
+    
+    
     private _loggedUserProfile : LoggedUserProfile;
     public get LoggedUserProfile() : LoggedUserProfile {
         return this._loggedUserProfile;

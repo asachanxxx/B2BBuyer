@@ -5,7 +5,7 @@ export const departments: NavigationLink[] =
 
         // /**********/////////////////*/*/*/////////////////*/*/*/   Computer Hardware   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Computer Hardware', url: './Computer-Hardware', menu: {
+            label: 'Computer Hardware', url: './process/categoryview',Id:"1", menu: {
                 type: 'megamenu',
                 size: 'xl',
                 image: 'assets/images/megamenu/megamenu-2.jpg',
@@ -124,7 +124,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   PCs & Laptops   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'PCs & Laptops', url: './Computer-Hardware', menu: {
+            label: 'PCs & Laptops', url: './process/categoryview', Id:"2",menu: {
                 type: 'megamenu',
                 size: 'xl',
                 image: 'assets/images/megamenu/megamenu-2.jpg',
@@ -243,7 +243,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   PCs & Laptops   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Data Storage', url: './Data-Storage', menu: {
+            label: 'Data Storage', url: './process/categoryview',Id:"3", menu: {
                 type: 'megamenu',
                 size: 'xl',
                 image: 'assets/images/megamenu/megamenu-2.jpg',
@@ -362,7 +362,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   Networking   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Networking', url: './shop', menu: {
+            label: 'Networking', url: './process/categoryview', Id:"4", menu: {
                 type: 'megamenu',
                 size: 'sm',
                 columns: [
@@ -393,7 +393,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   Servers & Workstations   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Servers & Workstations', url: './shop', menu: {
+            label: 'Servers & Workstations', url: './process/categoryview',Id:"5", menu: {
                 type: 'megamenu',
                 size: 'sm',
                 columns: [
@@ -424,7 +424,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   Computer Peripherals   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Computer Peripherals', url: './shop', menu: {
+            label: 'Computer Peripherals', url: './process/categoryview',Id:"6", menu: {
                 type: 'megamenu',
                 size: 'sm',
                 columns: [
@@ -455,7 +455,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   POS & Digital Signage   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'POS & Digital Signage', url: './shop', menu: {
+            label: 'POS & Digital Signage', url: './process/categoryview',Id:"7",menu: {
                 type: 'megamenu',
                 size: 'sm',
                 columns: [
@@ -486,7 +486,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   Electronics   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Electronics', url: './shop', menu: {
+            label: 'Electronics', url: './process/categoryview',Id:"8",menu: {
                 type: 'megamenu',
                 size: 'sm',
                 columns: [
@@ -517,7 +517,7 @@ export const departments: NavigationLink[] =
         },
         // /**********/////////////////*/*/*/////////////////*/*/*/   Office Solutions   ///////////////////////*//*////////////////////////*/*//*////////////////// */
         {
-            label: 'Office Solutions', url: './shop', menu: {
+            label: 'Office Solutions', url: './process/categoryview',Id:"9", menu: {
                 type: 'megamenu',
                 size: 'xl',
                 columns: [
@@ -548,7 +548,7 @@ export const departments: NavigationLink[] =
         },
           // /**********/////////////////*/*/*/////////////////*/*/*/   Software   ///////////////////////*//*////////////////////////*/*//*////////////////// */
           {
-            label: 'Software', url: './shop', menu: {
+            label: 'Software', url: './process/categoryview', Id:"10", menu: {
                 type: 'megamenu',
                 size: 'xl',
                 columns: [

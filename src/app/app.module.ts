@@ -31,6 +31,7 @@ import { PageHomeOneComponent } from './pages/page-home-one/page-home-one.compon
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.component';
 import { GlobalParams } from './shared/services/CorparateServices/globalparams.service';
+import { ProcessModule } from './process/process.module';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { GlobalParams } from './shared/services/CorparateServices/globalparams.s
         HeaderModule,
         MobileModule,
         SharedModule,
-        WidgetsModule
+        WidgetsModule,
+        ProcessModule
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
