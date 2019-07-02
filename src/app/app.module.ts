@@ -32,6 +32,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageHomeTwoComponent } from './pages/page-home-two/page-home-two.component';
 import { GlobalParams } from './shared/services/CorparateServices/globalparams.service';
 import { ProcessModule } from './process/process.module';
+import { AuthmModule } from './auth/authm.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from './auth/jwt.interceptor';
+import { ErrorInterceptor } from './auth/error.interceptor';
+import { AuthenticationService } from './auth/_services/authentication.service';
+import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+
 
 
 @NgModule({
@@ -61,11 +68,24 @@ import { ProcessModule } from './process/process.module';
         MobileModule,
         SharedModule,
         WidgetsModule,
-        ProcessModule
+        ProcessModule,
+        AuthmModule,
+        HttpClientModule
     ],
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
-        GlobalParams
+        GlobalParams,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        AuthenticationService,
+        {
+            provide: 'externalUrlRedirectResolver',
+            useValue: (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) =>
+            {
+                window.location.href = (route.data as any).externalUrl;
+            }
+        }
+
     ],
     bootstrap: [AppComponent]
 })

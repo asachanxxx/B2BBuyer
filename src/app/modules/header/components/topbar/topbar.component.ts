@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CurrencyService } from '../../../../shared/services/currency.service';
+import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalparams.service';
+import { User } from 'src/app/auth/_models/user.models';
 
 @Component({
     selector: 'app-header-topbar',
@@ -23,13 +25,30 @@ export class TopbarComponent {
     ];
 
     constructor(
-        public currencyService: CurrencyService
-    ) { }
+        public currencyService: CurrencyService,private config:GlobalParams
+    ) { 
+
+        console.log("getLoggedUser()   " , this.getLoggedUser())
+    }
+
+    getLoggedUser(){
+        var userobj = localStorage.getItem('currentUserobj');
+        if(userobj == undefined){
+            return undefined;
+        }else{
+            return userobj;
+        }
+        
+    }
 
     setCurrency(currency): void {
         this.currencyService.options = {
             code: currency.code,
             display: currency.symbol,
         };
+    }
+    goToUrl(){
+         
+        window.open(this.config.SellerPortalPath);
     }
 }

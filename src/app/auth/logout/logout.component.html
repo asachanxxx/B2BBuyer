@@ -1,0 +1,39 @@
+<app-page-header [header]="'Login'" [breadcrumbs]="[
+    {label: 'Home',       url: '../../'},
+    {label: 'Login', url: ''}
+]"></app-page-header>
+
+<div class="block">
+    <div class="container">
+        <div class="row">
+            <div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">{{message.text}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 d-flex mt-4 mt-md-0">
+                <div class="card flex-grow-1 mb-0">
+                    <div class="card-body">
+                        <h3 class="card-title header-style mb-4">Logout from the system</h3>
+
+                        <p>A NeweggBusiness account is required for logon and purchasing.</p>
+                        <p>With an account, you can leverage Web site functions and benefits that include:</p>
+                        <ul>
+                            <li>Leverage our Account Executive expertise</li>
+                            <li>View order history and manage returns</li>
+                            <li>Join our Rewards Loyalty Program</li>
+                            <li>Create and manage custom "To-Buy" lists</li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" (click)="Logout()"
+                                    class="btn btn-primary mt-md-3 mt-lg-4 text-lowercase float-right">Log out
+                                    ►</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

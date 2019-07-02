@@ -1,11 +1,30 @@
 import { Injectable } from '@angular/core';
-import { LoggedUserProfile } from '../../models/loggeduser.model';
+import { User } from 'src/app/auth/_models/user.models';
 
 @Injectable()
 export class GlobalParams{
 
     
-    private _BusinessShortName : string = "B2BBisinezer";
+    private _AdminPortalPath : string= "www.drive.google.com";
+    public get AdminPortalPath() : string {
+        return this._AdminPortalPath;
+    }
+    public set AdminPortalPath(v : string) {
+        this._AdminPortalPath = v;
+    }
+    
+
+    private _SellerPortalPath : string = "www.google.com";
+    public get SellerPortalPath() : string {
+        return this._SellerPortalPath;
+    }
+    public set SellerPortalPath(v : string) {
+        this._SellerPortalPath = v;
+    }
+    
+
+    
+    private _BusinessShortName : string = "B2Bisinezer";
     public get BusinessShortName() : string {
         return this._BusinessShortName;
     }
@@ -14,11 +33,11 @@ export class GlobalParams{
     }
     
     
-    private _loggedUserProfile : LoggedUserProfile;
-    public get LoggedUserProfile() : LoggedUserProfile {
+    private _loggedUserProfile : User;
+    public get LoggedUserProfile() : User {
         return this._loggedUserProfile;
     }
-    public set LoggedUserProfile(v : LoggedUserProfile) {
+    public set LoggedUserProfile(v : User) {
         this._loggedUserProfile = v;
     }
     

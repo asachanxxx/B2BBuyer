@@ -3,40 +3,73 @@
     <div class="topbar__container container">
         <div class="topbar__row">
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./site/about-us">About Us</a>
-            </div>
-            <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./site/contact-us">Contacts</a>
-            </div>
-            <div class="topbar__item topbar__item--link">
                 <a class="topbar-link" routerLink="">Store Location</a>
             </div>
             <div class="topbar__item topbar__item--link">
                 <a class="topbar-link" routerLink="./shop/track-order">Track Order</a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./blog">Blog</a>
+                <a class="topbar-link" routerLink="./site/about-us">About</a>
             </div>
+            <div class="topbar__item topbar__item--link">
+                <a class="topbar-link" routerLink="./site/contact-us">Contacts</a>
+            </div>
+            <div class="topbar__item topbar__item--link">
+                    <a href="https://{{config.SellerPortalPath}}" target="_blank" class="topbar-link color-white">
+                        Seller Portal
+                    </a>
+             </div>
+             <div class="topbar__item topbar__item--link">
+                    <a href="https://{{config.AdminPortalPath}}" target="_blank" class="topbar-link color-white">
+                        Admin Portal
+                    </a>
+             </div>
             <div class="topbar__spring"></div>
-            <div class="topbar__item">
-                <div class="topbar-dropdown" appDropdown="topbar-dropdown--opened" #accountDropdown="appDropdown">
-                    <button class="topbar-dropdown__btn" type="button" (click)="accountDropdown.toggle()">
-                        My Account
-                        <app-icon name="arrow-rounded-down-7x5" size="7x5"></app-icon>
-                    </button>
 
-                    <div class="topbar-dropdown__body">
-                        <app-header-menu layout="topbar" [items]="[
-                            {label: 'Dashboard',     url: './account/dashboard'},
-                            {label: 'Edit Profile',  url: './account/profile'},
-                            {label: 'Order History', url: './account/orders'},
-                            {label: 'Addresses',     url: './account/addresses'},
-                            {label: 'Password',      url: './account/password'},
-                            {label: 'Logout',        url: './account/login'}
-                        ]"></app-header-menu>
+
+            <ng-template [ngIf]="getLoggedUser()" [ngIfElse]="loading">
+
+                <!-- <div class="topbar__item topbar__item--link mr-3">
+                    <a class="topbar-link color-white" routerLink="#">Welcome {{getLoggedUser()}}</a>
+                </div> -->
+
+                <div class="topbar__item">
+                    <div class="topbar-dropdown" appDropdown="topbar-dropdown--opened" #accountDropdown="appDropdown">
+                        <button class="topbar-dropdown__btn color-white" type="button"
+                            (click)="accountDropdown.toggle()">
+                            Welcome {{getLoggedUser()}}
+                            <app-icon name="arrow-rounded-down-7x5" size="7x5"></app-icon>
+                        </button>
+
+                        <div class="topbar-dropdown__body">
+                            <app-header-menu layout="topbar" [items]="[
+                                {label: 'Dashboard',     url: './account/dashboard'},
+                                {label: 'Edit Profile',  url: './auth/profile'},
+                                {label: 'Order History', url: './account/orders'},
+                                {label: 'Addresses',     url: './account/addresses'},
+                                {label: 'Password',      url: './account/password'},
+                                {label: 'Logout',        url: './auth/logout'}
+                            ]"></app-header-menu>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            </ng-template>
+
+            <ng-template #loading>
+
+                <div class="topbar__item topbar__item--link">
+                    <a class="topbar-link color-white" routerLink="./auth/login">Log on</a>
+                    <em class="mr-2 ml-2">or</em>
+                    <a class="topbar-link color-white" routerLink="./auth/profile">Create an account</a>
+                </div>
+                <!-- <div class="topbar__item topbar__item--link ">
+                    <a class="topbar-link color-white" routerLink="./auth/profile">Register</a>
+                </div> -->
+
+            </ng-template>
+
+
             <div class="topbar__item">
                 <div class="topbar-dropdown" appDropdown="topbar-dropdown--opened" #currencyDropdown="appDropdown">
                     <button class="topbar-dropdown__btn" type="button" (click)="currencyDropdown.toggle()">
@@ -67,8 +100,7 @@
                             <li *ngFor="let language of languages">
                                 <button type="button">
                                     <span class="menu__icon">
-                                        <img [src]="'assets/images/languages/'+language.image+'.png'"
-                                             [srcset]="'assets/images/languages/'+language.image+'.png 1x,' +
+                                        <img [src]="'assets/images/languages/'+language.image+'.png'" [srcset]="'assets/images/languages/'+language.image+'.png 1x,' +
                                                        'assets/images/languages/'+language.image+'@2x.png 2x'" alt="">
                                     </span>
                                     {{ language.name }}

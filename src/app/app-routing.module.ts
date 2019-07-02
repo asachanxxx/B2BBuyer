@@ -37,9 +37,24 @@ export function makeRoutes(homeComponent: Type<any>): Routes {
             loadChildren: './process/process.module#ProcessModule'
         },
         {
+            path: 'auth',
+            loadChildren: './auth/authm.module#AuthmModule'
+        },
+        {
             path: '**',
             component: PageNotFoundComponent
+        },
+        {
+            path: 'test',
+            component: PageNotFoundComponent,
+            resolve: {
+                url: 'externalUrlRedirectResolver'
+            },
+            data: {
+                externalUrl: 'http://www.google.com'
+            }
         }
+        
     ];
 }
 
