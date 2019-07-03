@@ -32,7 +32,7 @@ export class GlobalParams{
     }
     
     
-    private _CurrencyMenuSwitch  : boolean;
+    private _CurrencyMenuSwitch  : boolean = true;
     public get CurrencyMenuSwitch () : boolean {
         return this._CurrencyMenuSwitch ;
     }
@@ -41,7 +41,7 @@ export class GlobalParams{
     }
     
     
-    private _LangMenuSwitch  : boolean;
+    private _LangMenuSwitch  : boolean = false;
     public get LangMenuSwitch () : boolean {
         return this._LangMenuSwitch ;
     }
@@ -50,7 +50,7 @@ export class GlobalParams{
     }
     
     
-    private _secondaryMenuSwitch : boolean;
+    private _secondaryMenuSwitch : boolean = true;
     public get secondaryMenuSwitch() : boolean {
         return this._secondaryMenuSwitch;
     }
