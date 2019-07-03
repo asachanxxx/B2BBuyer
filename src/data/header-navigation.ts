@@ -42,9 +42,9 @@ export const navigation: NavigationLink[] = [
         label: 'Account', url: './account', menu: {
             type: 'menu',
             items: [
-                { label: 'Login', url: './account/login' },
+                { label: 'Login', url: './auth/login' },
                 { label: 'Dashboard', url: './account/dashboard' },
-                { label: 'Edit Profile', url: './account/profile' },
+                { label: 'Edit Profile', url: './auth/profile' },
                 { label: 'Order History', url: './account/orders' },
                 { label: 'Address Book', url: './account/addresses' },
                 { label: 'Change Password', url: './account/password' }

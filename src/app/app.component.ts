@@ -6,6 +6,8 @@ import { WishlistService } from './shared/services/wishlist.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { CurrencyService } from './shared/services/currency.service';
+import { GlobalParams } from './shared/services/CorparateServices/globalparams.service';
+import { User } from './auth/_models/user.models';
 
 @Component({
     selector: 'app-root',
@@ -22,7 +24,8 @@ export class AppComponent implements AfterViewInit, OnInit {
         private wishlist: WishlistService,
         private zone: NgZone,
         private scroller: ViewportScroller,
-        private currency: CurrencyService
+        private currency: CurrencyService,
+        private config:GlobalParams
     ) {}
 
     ngOnInit(): void {
@@ -35,6 +38,8 @@ export class AppComponent implements AfterViewInit, OnInit {
             // digitsInfo: '1.2-2',
             // locale: 'en-US'
         };
+
+        //this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga"}
 
         this.router.events.subscribe((event) => {
             if ((event instanceof NavigationEnd)) {

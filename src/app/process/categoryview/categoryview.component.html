@@ -1,0 +1,30 @@
+<app-page-header [header]="'Shop by Type'" [breadcrumbs]="[
+    {label: 'Home',       url: './process/categoryview'},
+    {label: 'Shop by Type', url: ''}
+]"></app-page-header>
+
+
+<div class="container">
+  <div class="shop-layout shop-layout--sidebar--{{ sidebarPosition }}">
+    <div class="shop-layout__sidebar">
+      <div class="block block-sidebar">
+        <div class="block-sidebar__item">
+          <app-widget-categories [categories]="categories"></app-widget-categories>
+        </div>
+        <div class="block-sidebar__item d-none d-lg-block">
+          <app-widget-categories [categories]="categories"></app-widget-categories>
+        </div>
+      </div>
+    </div>
+    <div class="shop-layout__sidebar">
+      <div class="block block-sidebar">
+        <div class="block-sidebar__item">
+          <app-widget-categories [categories]="categories"></app-widget-categories>
+        </div>
+        <div class="block-sidebar__item d-none d-lg-block">
+          <app-widget-categories [categories]="categories"></app-widget-categories>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

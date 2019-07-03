@@ -10,5 +10,8 @@ export class MegamenuComponent {
     @Input() menu: Megamenu;
     @Input() departments = false;
 
-    constructor() { }
+    constructor() { 
+
+        console.log("MegamenuComponent - menu ", this.menu)
+    }
 }

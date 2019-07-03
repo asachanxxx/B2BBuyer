@@ -30,7 +30,7 @@ export class DepartmentsComponent implements OnInit {
         private service: DepartmentsService
     ) { 
 
-        console.log("item.menu " ,this.items)
+       // console.log("item.menu " ,this.items)
 
     }
 
@@ -38,7 +38,9 @@ export class DepartmentsComponent implements OnInit {
         const root = this.element.querySelector('.departments') as HTMLElement;
         const content = this.element.querySelector('.departments__links-wrapper') as HTMLElement;
 
+
         this.service.areaElement$.pipe(takeUntil(this.destroy$)).subscribe(areaElement => {
+
             if (areaElement) {
                 this.fixed = true;
                 this.isOpen = true;
@@ -100,6 +102,8 @@ export class DepartmentsComponent implements OnInit {
     }
 
     open(): void {
+        console.log("DepartmentsComponent: - open");
+
         this.isOpen = true;
 
         const root = this.element.querySelector('.departments') as HTMLElement;
@@ -116,6 +120,8 @@ export class DepartmentsComponent implements OnInit {
     }
 
     close(): void {
+        console.log("DepartmentsComponent: - close");
+
         if (this.fixed || !this.isOpen) {
             return;
         }
