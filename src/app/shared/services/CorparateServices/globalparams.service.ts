@@ -5,6 +5,16 @@ import { User } from 'src/app/auth/_models/user.models';
 export class GlobalParams{
 
     
+    ///1 = Dummy mode , 2= Test Mode , 3 = Production mode
+    private _SystemMode : number = 1;
+    public get SystemMode() : number {
+        return this._SystemMode;
+    }
+    public set SystemMode(v : number) {
+        this._SystemMode = v;
+    }
+        
+
     private _AdminPortalPath : string= "www.drive.google.com";
     public get AdminPortalPath() : string {
         return this._AdminPortalPath;
@@ -42,7 +52,7 @@ export class GlobalParams{
     }
     
     
-    private _primaryAPI : string;
+    private _primaryAPI : string = "http://localhost:50965/";
     public get PrimaryAPI() : string {
         return this._primaryAPI;
     }

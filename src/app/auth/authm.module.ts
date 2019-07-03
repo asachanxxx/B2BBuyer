@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { WidgetsModule } from '../modules/widgets/widgets.module';
 import { ShopModule } from '../modules/shop/shop.module';
 import { LogoutComponent } from './logout/logout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './logout/logout.component';
      // modules
      SharedModule,
      WidgetsModule,
-     ShopModule
+     ShopModule,
+     ReactiveFormsModule 
 
   ]
 })

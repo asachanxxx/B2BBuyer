@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { User } from '../_models/user.models';
 import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalparams.service';
+import { DataForTocken } from '../_models/DataForTocken.model';
 
 
 
@@ -12,7 +13,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private http: HttpClient, private config:GlobalParams) {
+    constructor(private http: HttpClient, private config: GlobalParams) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -21,17 +22,13 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    login(username: string, password: string) {
-        return this.http.post<any>(`${this.config.ApiKey}/users/authenticate`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-                return user;
-            }));
+    login(loginDetails: DataForTocken):Observable<any> {
+        const body = new HttpParams()
+            .set('grant_type', 'password')
+            .set('username', loginDetails.username)
+            .set('password', loginDetails.password)
+
+        return this.http.post("http://localhost:50965/owin/Token", body)
     }
 
     logout() {
@@ -40,12 +37,12 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
     }
 
-    loginDummy(){
-       
-        this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga Chandrakumara"}
-        localStorage.setItem('currentUserobj', JSON.stringify( this.config.LoggedUserProfile.username));
+    loginDummy() {
+
+        this.config.LoggedUserProfile = { id: 1, firstName: "Asanga", lastName: "Chan", password: "123", token: this.config.ApiKey, username: "Asanga Chandrakumara" }
+        localStorage.setItem('currentUserobj', JSON.stringify(this.config.LoggedUserProfile.username));
     }
-    logoutDummy(){
+    logoutDummy() {
         this.config.LoggedUserProfile = undefined;
         localStorage.removeItem('currentUserobj');
     }

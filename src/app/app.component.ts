@@ -41,6 +41,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
         //this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga"}
 
+        this.config.SystemMode =3;
+
         this.router.events.subscribe((event) => {
             if ((event instanceof NavigationEnd)) {
                 this.scroller.scrollToPosition([0, 0]);
