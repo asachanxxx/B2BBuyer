@@ -42,7 +42,7 @@ export class AuthenticationService {
 
     loginDummy(){
        
-        this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga"}
+        this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga Chandrakumara"}
         localStorage.setItem('currentUserobj', JSON.stringify( this.config.LoggedUserProfile.username));
     }
     logoutDummy(){

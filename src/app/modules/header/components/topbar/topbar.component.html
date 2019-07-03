@@ -3,41 +3,53 @@
     <div class="topbar__container container">
         <div class="topbar__row">
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="">Store Location</a>
+                <a class="topbar-link color-Off-white" routerLink="./shop/track-order">
+                    <!-- <i class="fa fa-chalkboard-teacher mr-1"></i> -->
+                    <i class="fas fa-file-invoice mr-1"></i>
+                    Track Order
+                </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./shop/track-order">Track Order</a>
+                <a class="topbar-link color-Off-white" routerLink="./shop/track-order">
+                    <i class="far fa-question-circle mr-1"></i>
+                    FAQ
+                </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./site/about-us">About</a>
+                <a class="topbar-link color-Off-white" routerLink="./shop/track-order">
+                    <i class="fa fa-address-card mr-1"></i>
+                    About us
+                </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                <a class="topbar-link" routerLink="./site/contact-us">Contacts</a>
+                <a class="topbar-link color-Off-white" routerLink="./shop/track-order">
+                    <i class="fas fa-phone mr-1"></i>
+                    
+                    Contact Us
+                </a>
             </div>
             <div class="topbar__item topbar__item--link">
-                    <a href="https://{{config.SellerPortalPath}}" target="_blank" class="topbar-link color-white">
-                        Seller Portal
-                    </a>
-             </div>
-             <div class="topbar__item topbar__item--link">
-                    <a href="https://{{config.AdminPortalPath}}" target="_blank" class="topbar-link color-white">
-                        Admin Portal
-                    </a>
-             </div>
+                <a href="https://{{config.SellerPortalPath}}" target="_blank" class="topbar-link color-white">
+                    <i class="fa fa-chalkboard-teacher mr-1"></i>
+                    Seller Portal
+                </a>
+            </div>
+            <div class="topbar__item topbar__item--link">
+                <a href="https://{{config.AdminPortalPath}}" target="_blank" class="topbar-link color-white">
+                    <i class="fa fa-user-secret mr-1"></i>
+                    Admin Portal
+                </a>
+            </div>
             <div class="topbar__spring"></div>
 
 
             <ng-template [ngIf]="getLoggedUser()" [ngIfElse]="loading">
-
-                <!-- <div class="topbar__item topbar__item--link mr-3">
-                    <a class="topbar-link color-white" routerLink="#">Welcome {{getLoggedUser()}}</a>
-                </div> -->
-
-                <div class="topbar__item">
+                <div class="topbar__item" *ngIf="HandleCurrencySwitch()">
                     <div class="topbar-dropdown" appDropdown="topbar-dropdown--opened" #accountDropdown="appDropdown">
                         <button class="topbar-dropdown__btn color-white" type="button"
                             (click)="accountDropdown.toggle()">
-                            Welcome {{getLoggedUser()}}
+                            <i class="fa fa-user-circle mr-1"></i>
+                            {{getLoggedUser()}}
                             <app-icon name="arrow-rounded-down-7x5" size="7x5"></app-icon>
                         </button>
 
@@ -53,22 +65,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="topbar__item" *ngIf="HandleCurrencySwitch()">
-
             </ng-template>
 
             <ng-template #loading>
-
                 <div class="topbar__item topbar__item--link">
                     <a class="topbar-link color-white" routerLink="./auth/login">Log on</a>
                     <em class="mr-2 ml-2">or</em>
                     <a class="topbar-link color-white" routerLink="./auth/profile">Create an account</a>
                 </div>
-                <!-- <div class="topbar__item topbar__item--link ">
-                    <a class="topbar-link color-white" routerLink="./auth/profile">Register</a>
-                </div> -->
-
             </ng-template>
 
 

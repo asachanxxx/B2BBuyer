@@ -25,20 +25,19 @@ export class TopbarComponent {
     ];
 
     constructor(
-        public currencyService: CurrencyService,private config:GlobalParams
-    ) { 
+        public currencyService: CurrencyService, private config: GlobalParams
+    ) {
 
-        console.log("getLoggedUser()   " , this.getLoggedUser())
+        console.log("getLoggedUser()   ", this.getLoggedUser())
     }
 
-    getLoggedUser(){
+    getLoggedUser() {
         var userobj = localStorage.getItem('currentUserobj');
-        if(userobj == undefined){
+        if (userobj == undefined) {
             return undefined;
-        }else{
-            return userobj;
+        } else {
+            return userobj.replace(/['"]+/g, '');
         }
-        
     }
 
     setCurrency(currency): void {
@@ -57,15 +56,15 @@ export class TopbarComponent {
     }
 
     IsUserLogged(): boolean {
-        if(this.config.LoggedUserProfile === undefined){
+        if (this.config.LoggedUserProfile === undefined) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
-    
-    goToUrl(){
-         
+
+    goToUrl() {
+
         window.open(this.config.SellerPortalPath);
     }
 }
