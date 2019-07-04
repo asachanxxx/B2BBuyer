@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalparams.service';
 import { AuthenticationService } from '../_services/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,13 +6,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { DataForTocken } from '../_models/DataForTocken.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-login',
     templateUrl: './page-login.component.html',
     styleUrls: ['./page-login.component.scss']
 })
-export class PageLoginComponent implements OnInit {
+export class PageLoginComponent implements OnInit, OnDestroy {
 
     loginForm: FormGroup;
     loading = false;
@@ -36,10 +37,30 @@ export class PageLoginComponent implements OnInit {
         })
     }
 
+    ngOnDestroy() {
+        console.log("Destroyign Component", "asdasd");
+        let tdata: DataForTocken = new DataForTocken();
+        tdata.username = this.f.username.value;
+        tdata.password = this.f.password.value;
+        this.authenticationService.getUserInfo(tdata).subscribe(
+            userdata => {
+                console.log("userdata", userdata);
+                //this.route.navigate([this.returnUrl]);
+            }
+            ,
+            error => {
+                //in case of error let the user know and hold the loading
+                this.alertservice.error(error.error.error_description)
+                //this.loading = false;
+            }
+        );
+
+    }
+
     ngOnInit() {
         this.CreateForm();
         this.returnUrl = this.actroute.snapshot.queryParams['returnUrl'] || '/';
-        console.log("returnUrl" , this.returnUrl)
+        console.log("returnUrl", this.returnUrl)
     }
 
     get f() { return this.loginForm.controls; }
@@ -63,22 +84,67 @@ export class PageLoginComponent implements OnInit {
             let tdata: DataForTocken = new DataForTocken();
             tdata.username = this.f.username.value;
             tdata.password = this.f.password.value;
-            //make the service call to get tocken
+
             this.authenticationService.login(tdata)
                 .pipe(first())
                 .subscribe(
                     data => {
-                        console.log("Data on subscribe : ", data)
-                        // store user details and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify(data.access_token));
-                        localStorage.setItem('UserLogged', JSON.stringify(true));
-                        this.route.navigate([this.returnUrl]);
+                        console.log("subscribe", data);
+                        this.route.navigate(["home"]);
                     },
                     error => {
-                        //in case of error let the user know and hold the loading
-                        this.alertservice.error(error.error.error_description)
-                        this.loading = false;
-                    });
+
+                        // this.route.navigate(["home"]);
+                    })
+
+
+            this.authenticationService.login(tdata)
+                .pipe(first())
+                .subscribe(
+                    data => {
+                        console.log("subscribe", data);
+                        this.route.navigate(["home"]);
+                    },
+                    error => {
+
+                        // this.route.navigate(["home"]);
+                    })
+
+
+            // //make the service call to get tocken
+            // this.authenticationService.login(tdata)
+            //     .pipe(first())
+            //     .subscribe(
+            //         data => {
+            //             console.log("Data on subscribe : ", data)
+            //             // store user details and jwt token in local storage to keep user logged in between page refreshes
+            //             localStorage.setItem('APIKey', JSON.stringify(data.access_token));
+
+            //             console.log(" localStorage.setItem('APIKey', JSON.stringify(data.access_token));", localStorage.getItem('APIKey'))
+            //             this.authenticationService.getUserInfo(tdata).subscribe(
+            //                 userdata => {
+            //                     console.log("userdata", userdata);
+            //                     //this.route.navigate([this.returnUrl]);
+            //                 }
+            //                 ,
+            //                 error => {
+            //                     //in case of error let the user know and hold the loading
+            //                     this.alertservice.error(error.error.error_description)
+            //                     //this.loading = false;
+            //                 }
+            //             );
+            //         },
+            //         error => {
+            //             //in case of error let the user know and hold the loading
+            //             this.alertservice.error(error.error.error_description)
+            //             this.loading = false;
+            //         },
+            //     );
+
+
+
+
+
         }
 
 
