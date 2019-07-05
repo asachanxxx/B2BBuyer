@@ -76,7 +76,7 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
         // { provide: LOCALE_ID, useValue: 'it' }
         GlobalParams,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+        //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         AuthenticationService,
         {
             provide: 'externalUrlRedirectResolver',

@@ -39,22 +39,6 @@ export class PageLoginComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         console.log("Destroyign Component", "asdasd");
-        let tdata: DataForTocken = new DataForTocken();
-        tdata.username = this.f.username.value;
-        tdata.password = this.f.password.value;
-        this.authenticationService.getUserInfo(tdata).subscribe(
-            userdata => {
-                console.log("userdata", userdata);
-                //this.route.navigate([this.returnUrl]);
-            }
-            ,
-            error => {
-                //in case of error let the user know and hold the loading
-                this.alertservice.error(error.error.error_description)
-                //this.loading = false;
-            }
-        );
-
     }
 
     ngOnInit() {
@@ -66,6 +50,10 @@ export class PageLoginComponent implements OnInit, OnDestroy {
     get f() { return this.loginForm.controls; }
 
 
+    create_new_account() {
+
+    }
+
     onSubmit() {
         this.loading = true;
         if (this.config.SystemMode == 1) {
@@ -76,10 +64,14 @@ export class PageLoginComponent implements OnInit, OnDestroy {
         } else if (this.config.SystemMode == 3) {
             this.submitted = true;
 
+
+            // this.route.navigate(["home"]);
+
             // stop here if form is invalid
             if (this.loginForm.invalid) {
                 return;
             }
+            
             //creating data object to pass
             let tdata: DataForTocken = new DataForTocken();
             tdata.username = this.f.username.value;
@@ -90,25 +82,25 @@ export class PageLoginComponent implements OnInit, OnDestroy {
                 .subscribe(
                     data => {
                         console.log("subscribe", data);
-                        this.route.navigate(["home"]);
+                        console.log("localStorage.getItem(APIKey)", localStorage.getItem("APIKey"))
                     },
                     error => {
-
-                        // this.route.navigate(["home"]);
                     })
 
+            this.authenticationService.getUserInfo(tdata).subscribe(
+                userdata => {
 
-            this.authenticationService.login(tdata)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        console.log("subscribe", data);
-                        this.route.navigate(["home"]);
-                    },
-                    error => {
-
-                        // this.route.navigate(["home"]);
-                    })
+                    console.log("userdata", userdata);
+                    //this.route.navigate([this.returnUrl]);
+                    //this.route.navigate(["home"]);
+                }
+                ,
+                error => {
+                    //in case of error let the user know and hold the loading
+                    this.alertservice.error(error.error.error_description)
+                    //this.loading = false;
+                }
+            );
 
 
             // //make the service call to get tocken
@@ -140,13 +132,6 @@ export class PageLoginComponent implements OnInit, OnDestroy {
             //             this.loading = false;
             //         },
             //     );
-
-
-
-
-
         }
-
-
     }
 }
