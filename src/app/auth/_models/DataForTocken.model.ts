@@ -3,3 +3,8 @@ export class DataForTocken {
     username: string;
     password: string;
 }
+
+export class UserObject {
+    username: string;
+    password: string;
+}

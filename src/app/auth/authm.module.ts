@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageLoginComponent } from './page-login/page-login.component';
 import { AuthMRoutingModule } from './authm.routing.module';
-import { PageProfileComponent } from './page-profile/page-profile.component';
 import { AlertsComponent_My } from './alerts/alerts.component';
 import { HeaderModule } from '../modules/header/header.module';
 import { SharedModule } from '../shared/shared.module';
@@ -15,7 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     PageLoginComponent,
     AlertsComponent_My,
-    PageProfileComponent,
     LogoutComponent
   ],
   imports: [

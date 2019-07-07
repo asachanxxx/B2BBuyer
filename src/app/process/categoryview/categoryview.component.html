@@ -5,26 +5,84 @@
 
 
 <div class="container">
-  <div class="shop-layout shop-layout--sidebar--{{ sidebarPosition }}">
-    <div class="shop-layout__sidebar">
-      <div class="block block-sidebar">
-        <div class="block-sidebar__item">
-          <app-widget-categories [categories]="categories"></app-widget-categories>
-        </div>
-        <div class="block-sidebar__item d-none d-lg-block">
-          <app-widget-categories [categories]="categories"></app-widget-categories>
-        </div>
-      </div>
-    </div>
-    <div class="shop-layout__sidebar">
-      <div class="block block-sidebar">
-        <div class="block-sidebar__item">
-          <app-widget-categories [categories]="categories"></app-widget-categories>
-        </div>
-        <div class="block-sidebar__item d-none d-lg-block">
-          <app-widget-categories [categories]="categories"></app-widget-categories>
-        </div>
+
+  <div class="row">
+    <div class="col-md-12 hidden-md-down">
+      <div class="block-slideshow block"
+        [ngClass]="{'block-slideshow--layout--full': !withDepartments, 'block-slideshow--layout--with-departments': withDepartments}">
+        <owl-carousel-o [options]="options" appOwlPreventClick style="height: 300px;">
+          <ng-container *ngFor="let slide of slides">
+            <ng-template carouselSlide>
+              <a class="block-slideshow__slide" href="" appClick>
+                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop"
+                  [ngStyle]="{'background-image': 'url('+(withDepartments ? slide.image_classic : slide.image_full)+')'}">
+                </div>
+                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile"
+                  [ngStyle]="{'background-image': 'url('+slide.image_mobile+')'}"></div>
+                <div class="block-slideshow__slide-content">
+                  <div class="block-slideshow__slide-title"
+                    [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.title)"></div>
+                  <div class="block-slideshow__slide-text" [innerHTML]="sanitizer.bypassSecurityTrustHtml(slide.text)">
+                  </div>
+                  <div class="block-slideshow__slide-button">
+                    <span class="btn btn-primary btn-lg">Shop Now</span>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
       </div>
     </div>
   </div>
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row ">
+        <div class="col-md-6">
+          <div class="mx-auto pt-5">
+            <img src="assets/images/LevelImages/Level2/LVL2-1.jpg" alt="image"
+              class="img-fluid rounded mx-auto d-block">
+          </div>
+        </div>
+        <div class="col-md-6 border-right">
+          <div class="shop-layout__sidebar pt-2">
+            <div class="block block-sidebar">
+              <div class="block-sidebar__item">
+                <div class="widget-categories--location--{{ location }} widget">
+                  <h4 class="widget__title pb-0">Categories</h4>
+                  <ul class="widget-categories__list" appCollapse>
+                    <li *ngFor="let category of categories" class="widget-categories__item"
+                      appCollapseItem="widget-categories__item--open" #collapse="appCollapseItem">
+                      <div class="widget-categories__row">
+                        <a [routerLink]="category.url">
+                          <app-icon class="widget-categories__arrow" name="arrow-rounded-right-6x9" size="6x9">
+                          </app-icon>
+                          {{ category.name }}
+                        </a>
+                        <button *ngIf="category.children?.length" class="widget-categories__expander" type="button"
+                          (click)="collapse.toggle()"></button>
+                      </div>
+                      <div *ngIf="category.children?.length" class="widget-categories__subs" appCollapseContent>
+                        <ul>
+                          <li *ngFor="let sub of category.children"><a [routerLink]="sub.url">{{ sub.name }}</a></li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
 </div>

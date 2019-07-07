@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CurrencyService } from '../../../../shared/services/currency.service';
 import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalparams.service';
 import { User } from 'src/app/auth/_models/user.models';
+import { AuthenticationService } from 'src/app/auth/_services/authentication.service';
 
 @Component({
     selector: 'app-header-topbar',
@@ -25,14 +26,17 @@ export class TopbarComponent {
     ];
 
     constructor(
-        public currencyService: CurrencyService, private config: GlobalParams
+        public currencyService: CurrencyService, private config: GlobalParams 
     ) {
+        
+      
 
         console.log("getLoggedUser()   ", this.getLoggedUser())
     }
 
     getLoggedUser() {
-        var userobj = localStorage.getItem('currentUserobj');
+       
+        var userobj = localStorage.getItem('CurrentUserName');
         if (userobj == undefined) {
             return undefined;
         } else {

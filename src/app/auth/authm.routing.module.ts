@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PageLoginComponent } from './page-login/page-login.component';
-import { PageProfileComponent } from './page-profile/page-profile.component';
 import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
@@ -15,10 +14,6 @@ const routes: Routes = [
         component: PageLoginComponent
     },
     {
-        path: 'profile',
-        component: PageProfileComponent
-    },
-    {
         path: 'logout',
         component: LogoutComponent
     }
@@ -29,3 +24,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 export class AuthMRoutingModule { }
+

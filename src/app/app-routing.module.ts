@@ -26,7 +26,7 @@ export function makeRoutes(homeComponent: Type<any>): Routes {
         },
         {
             path: 'account',
-            loadChildren: './modules/account/account.module#AccountModule'
+            loadChildren: './process/account/account.module#AccountModule'
         },
         {
             path: 'site',

@@ -37,7 +37,6 @@ export class AuthenticationService {
 
         return this.httpClient.post<any>(this.config.PrimaryAPI + "owin/Token", body)
             .pipe(map(user => {
-                localStorage.setItem('APIKey', user.access_token);
                 this.currentUserSubject.next(user);
                 return user;
             })
@@ -49,13 +48,17 @@ export class AuthenticationService {
     And it will save the user object in local storage.
     */
     getUserInfo(loginDetails: DataForTocken): Observable<any> {
-        return this.http.get(this.config.PrimaryAPI + "/api/Account/FindUser" + "?username=" + loginDetails.username + "&password=" + loginDetails.password)
+        const body = new HttpParams()
+        .set('username', loginDetails.username)
+        .set('password', loginDetails.password)
+
+        return this.http.get(this.config.PrimaryAPI + "/api/Account/FindUser", {params: body})
     }
 
     /*
     this method will refresh the token .if token not works then returns an error or redirect to the login page
     */
-    refreshToken() {
+    checkTokenValidity() {
         return this.http.get(this.config.PrimaryAPI + "/api/Account/CheckToekn")
     }
 
@@ -64,6 +67,8 @@ export class AuthenticationService {
     */
     logout() {
         localStorage.removeItem('APIKey');
+        localStorage.removeItem('CurrentUserName');
+        localStorage.removeItem('UserId');
         this.currentUserSubject.next(null);
     }
 
@@ -77,5 +82,29 @@ export class AuthenticationService {
         localStorage.removeItem('currentUserobj');
     }
 
+
+    checkloginStatus():boolean{
+        let anyvalue:boolean = true;
+        if(localStorage.getItem("UserId") === null || localStorage.getItem("APIKey") === null  || localStorage.getItem("CurrentUserName") === null ){
+            anyvalue = false;
+        }
+        return anyvalue;
+    }
+    
+    GetApiToken(){
+        return localStorage.getItem("APIKey");
+    }
+
+    GetUserId(){
+        return localStorage.getItem("UserId");
+    }
+
+    GetCurrentUserName(){
+        return localStorage.getItem("CurrentUserName");
+    }
+
+    SubscribeForEmail(UserId:string){
+
+    }
 
 }

@@ -8,6 +8,7 @@ import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { CurrencyService } from './shared/services/currency.service';
 import { GlobalParams } from './shared/services/CorparateServices/globalparams.service';
 import { User } from './auth/_models/user.models';
+import { AuthenticationService } from './auth/_services/authentication.service';
 
 @Component({
     selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements AfterViewInit, OnInit {
         private zone: NgZone,
         private scroller: ViewportScroller,
         private currency: CurrencyService,
-        private config:GlobalParams
+        private config:GlobalParams,
+        private authprice:AuthenticationService
     ) {}
 
     ngOnInit(): void {
@@ -39,7 +41,10 @@ export class AppComponent implements AfterViewInit, OnInit {
             // locale: 'en-US'
         };
 
-        //this.config.LoggedUserProfile = {id:1,firstName:"Asanga",lastName:"Chan",password:"123",token:this.config.ApiKey,username:"Asanga"}
+
+        if(!this.authprice.checkloginStatus()){
+            this.authprice. logout();
+        }
 
         this.config.SystemMode =3;
 

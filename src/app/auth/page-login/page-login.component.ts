@@ -13,7 +13,7 @@ import { forkJoin } from 'rxjs';
     templateUrl: './page-login.component.html',
     styleUrls: ['./page-login.component.scss']
 })
-export class PageLoginComponent implements OnInit, OnDestroy {
+export class PageLoginComponent implements OnInit {
 
     loginForm: FormGroup;
     loading = false;
@@ -37,9 +37,6 @@ export class PageLoginComponent implements OnInit, OnDestroy {
         })
     }
 
-    ngOnDestroy() {
-        console.log("Destroyign Component", "asdasd");
-    }
 
     ngOnInit() {
         this.CreateForm();
@@ -63,15 +60,11 @@ export class PageLoginComponent implements OnInit, OnDestroy {
             this.route.navigate(['/home'])
         } else if (this.config.SystemMode == 3) {
             this.submitted = true;
-
-
-            // this.route.navigate(["home"]);
-
             // stop here if form is invalid
             if (this.loginForm.invalid) {
+                this.alertservice.error("UserName or password invalied!")
                 return;
             }
-            
             //creating data object to pass
             let tdata: DataForTocken = new DataForTocken();
             tdata.username = this.f.username.value;
@@ -81,57 +74,31 @@ export class PageLoginComponent implements OnInit, OnDestroy {
                 .pipe(first())
                 .subscribe(
                     data => {
-                        console.log("subscribe", data);
+                        localStorage.setItem('APIKey', data.access_token);
                         console.log("localStorage.getItem(APIKey)", localStorage.getItem("APIKey"))
+                        this.authenticationService.getUserInfo(tdata).subscribe(
+                            userdata => {
+                                console.log("userdata", userdata);
+                                localStorage.setItem('UserId', userdata.Id);
+                                localStorage.setItem('CurrentUserName', userdata.UserName);
+                                this.route.navigate(["account/dashboard"]);
+                            }
+                            ,
+                            error => {
+                                this.alertservice.error(error.error.error_description)
+                            }
+                        );
                     },
                     error => {
                     })
 
-            this.authenticationService.getUserInfo(tdata).subscribe(
-                userdata => {
+           
 
-                    console.log("userdata", userdata);
-                    //this.route.navigate([this.returnUrl]);
-                    //this.route.navigate(["home"]);
-                }
-                ,
-                error => {
-                    //in case of error let the user know and hold the loading
-                    this.alertservice.error(error.error.error_description)
-                    //this.loading = false;
-                }
-            );
+           
+            
+            //doing other login related stuff
 
 
-            // //make the service call to get tocken
-            // this.authenticationService.login(tdata)
-            //     .pipe(first())
-            //     .subscribe(
-            //         data => {
-            //             console.log("Data on subscribe : ", data)
-            //             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            //             localStorage.setItem('APIKey', JSON.stringify(data.access_token));
-
-            //             console.log(" localStorage.setItem('APIKey', JSON.stringify(data.access_token));", localStorage.getItem('APIKey'))
-            //             this.authenticationService.getUserInfo(tdata).subscribe(
-            //                 userdata => {
-            //                     console.log("userdata", userdata);
-            //                     //this.route.navigate([this.returnUrl]);
-            //                 }
-            //                 ,
-            //                 error => {
-            //                     //in case of error let the user know and hold the loading
-            //                     this.alertservice.error(error.error.error_description)
-            //                     //this.loading = false;
-            //                 }
-            //             );
-            //         },
-            //         error => {
-            //             //in case of error let the user know and hold the loading
-            //             this.alertservice.error(error.error.error_description)
-            //             this.loading = false;
-            //         },
-            //     );
         }
     }
 }

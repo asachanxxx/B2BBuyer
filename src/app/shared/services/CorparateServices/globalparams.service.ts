@@ -5,6 +5,24 @@ import { User } from 'src/app/auth/_models/user.models';
 export class GlobalParams{
 
     
+    private _commingsoontext : string = "Hey Guys! This page will Come Soon..."
+    public get commingsoontext() : string {
+        return this._commingsoontext;
+    }
+    public set commingsoontext(v : string) {
+        this._commingsoontext = v;
+    }
+    
+    
+    private _commingsooncontent : string = "This page is under construction and will be back soon. This is due to maintainance or we are adding some new features to the page. Sorry for any inconvenience";
+    public get commingsooncontent() : string {
+        return this._commingsooncontent;
+    }
+    public set commingsooncontent(v : string) {
+        this._commingsooncontent = v;
+    }
+    
+    
     ///1 = Dummy mode , 2= Test Mode , 3 = Production mode
     private _SystemMode : number = 1;
     public get SystemMode() : number {

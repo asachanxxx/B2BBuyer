@@ -13,7 +13,9 @@ export class LinksComponent {
 
     constructor(
         private direction: DirectionService
-    ) {}
+    ) {
+        console.log("items  " , this.items);
+    }
 
     mouseenter(event: MouseEvent): void {
         if (!(event.target instanceof HTMLElement)) {
