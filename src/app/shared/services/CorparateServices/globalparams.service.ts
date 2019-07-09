@@ -42,7 +42,7 @@ export class GlobalParams{
     }
     
 
-    private _SellerPortalPath : string = "www.google.com";
+    private _SellerPortalPath : string = "http://localhost:4300/";
     public get SellerPortalPath() : string {
         return this._SellerPortalPath;
     }

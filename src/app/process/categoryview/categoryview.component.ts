@@ -7,15 +7,17 @@ import { ActivatedRoute } from '@angular/router';
 import { categories } from '../../../data/blog-widget-categories';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DirectionService } from 'src/app/shared/services/direction.service';
+import { CategoryService } from 'src/app/shared/services/processservices/categoryservices.service';
 @Component({
   selector: 'app-categoryview',
   templateUrl: './categoryview.component.html',
-  styleUrls: ['./categoryview.component.scss']
+  styleUrls: ['./categoryview.component.scss'],
+  providers:[CategoryService]
 })
 export class CategoryviewComponent implements OnInit {
   products: Product[] = products;
   filters: ProductFilter[] = filters;
-  categories = categories;
+  categories:Array<any>;
 
   columns: 3 | 4 | 5 = 3;
   viewMode: 'grid' | 'grid-with-features' | 'list' = 'grid';
@@ -67,7 +69,8 @@ export class CategoryviewComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    private direction: DirectionService
+    private direction: DirectionService,
+    private catservice:CategoryService
     ) {
     this.route.data.subscribe(data => {
       this.columns = 'columns' in data ? data.columns : this.columns;
@@ -79,6 +82,8 @@ export class CategoryviewComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       console.log("params.get('id')", params.get('id'))
+
+      this.getCategoryMap(+params.get('id'))
       // this.contactService.getContact(params.get('id')).subscribe(c => {
       //   console.log(c);
       //   this.contact = c;
@@ -87,6 +92,18 @@ export class CategoryviewComponent implements OnInit {
   }
 
   ngOnInit() {
+
+   
+
+  }
+
+  getCategoryMap(id:number){
+    this.catservice.GetAllSubCategoriesForMegaView(id).subscribe(
+      data=>{
+        this.categories = data;
+        console.log(this.categories);
+      }
+    )
   }
 
 }

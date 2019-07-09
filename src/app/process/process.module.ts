@@ -17,6 +17,7 @@ import { RateSupplierComponent } from './rate-supplier/rate-supplier.component';
 import { ViewRatingsComponent } from './view-ratings/view-ratings.component';
 import { SeeallReviewsComponent } from './seeall-reviews/seeall-reviews.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ProductsearchpageComponent } from './productSearch/productsearchpage/productsearchpage.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     DashboardComponent, 
     QuoteRequestComponent, 
     ReturnanItemComponent, 
-    ShippingChargesComponent, MessagesComponent, FileComplainsComponent, ComplainHistoryComponent, RateSupplierComponent, ViewRatingsComponent, SeeallReviewsComponent
+    ShippingChargesComponent, MessagesComponent, FileComplainsComponent, ComplainHistoryComponent, RateSupplierComponent, ViewRatingsComponent, SeeallReviewsComponent, ProductsearchpageComponent
   ],
   imports: [
     CommonModule,

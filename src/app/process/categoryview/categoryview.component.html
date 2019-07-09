@@ -39,12 +39,12 @@
 
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-6" *ngFor="let category of categories">
       <div class="row ">
         <div class="col-md-6">
           <div class="mx-auto pt-5">
-            <img src="assets/images/LevelImages/Level2/LVL2-1.jpg" alt="image"
-              class="img-fluid rounded mx-auto d-block">
+            <img src="assets/images/LevelImages/Level2/LVL2-{{category.Subcategory1Id}}.jpg" alt="image"
+              class="img-fluid rounded mx-auto d-block" width="200px;">
           </div>
         </div>
         <div class="col-md-6 border-right">
@@ -52,26 +52,31 @@
             <div class="block block-sidebar">
               <div class="block-sidebar__item">
                 <div class="widget-categories--location--{{ location }} widget">
-                  <h4 class="widget__title pb-0">Categories</h4>
+                 
+                 
+                  <h4 class="widget__title pb-0"> {{ category.Subcategory1Name }}</h4>
                   <ul class="widget-categories__list" appCollapse>
-                    <li *ngFor="let category of categories" class="widget-categories__item"
+                    <li *ngFor="let catdet of category.Details" class="widget-categories__item"
                       appCollapseItem="widget-categories__item--open" #collapse="appCollapseItem">
                       <div class="widget-categories__row">
-                        <a [routerLink]="category.url">
+                        <a [routerLink]="['/classic/process/productsearch/' ,catdet.Subcategory2Id] ">
                           <app-icon class="widget-categories__arrow" name="arrow-rounded-right-6x9" size="6x9">
                           </app-icon>
-                          {{ category.name }}
+                          {{ catdet.Subcategory2Name }}
                         </a>
-                        <button *ngIf="category.children?.length" class="widget-categories__expander" type="button"
-                          (click)="collapse.toggle()"></button>
+                        <!-- <button *ngIf="category.children?.length" class="widget-categories__expander" type="button"
+                          (click)="collapse.toggle()"></button> -->
                       </div>
-                      <div *ngIf="category.children?.length" class="widget-categories__subs" appCollapseContent>
+                      <!-- <div *ngIf="category.children?.length" class="widget-categories__subs" appCollapseContent>
                         <ul>
                           <li *ngFor="let sub of category.children"><a [routerLink]="sub.url">{{ sub.name }}</a></li>
                         </ul>
-                      </div>
+                      </div> -->
                     </li>
                   </ul>
+
+
+
                 </div>
               </div>
             </div>
