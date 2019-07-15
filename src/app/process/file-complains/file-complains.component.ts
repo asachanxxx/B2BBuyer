@@ -8,7 +8,7 @@ import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalpa
 })
 export class FileComplainsComponent implements OnInit {
 
-  constructor(private config:GlobalParams) { }
+  constructor(public config:GlobalParams) { }
 
 
 

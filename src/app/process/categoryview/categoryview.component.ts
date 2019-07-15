@@ -82,12 +82,8 @@ export class CategoryviewComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       console.log("params.get('id')", params.get('id'))
-
+    
       this.getCategoryMap(+params.get('id'))
-      // this.contactService.getContact(params.get('id')).subscribe(c => {
-      //   console.log(c);
-      //   this.contact = c;
-      // })
     });
   }
 
@@ -101,7 +97,7 @@ export class CategoryviewComponent implements OnInit {
     this.catservice.GetAllSubCategoriesForMegaView(id).subscribe(
       data=>{
         this.categories = data;
-        console.log(this.categories);
+        console.log("this.categories" , this.categories);
       }
     )
   }

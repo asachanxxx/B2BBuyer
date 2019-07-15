@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { WishlistService } from '../../../../shared/services/wishlist.service';
-import { Product } from '../../../../shared/interfaces/product';
-import { CartService } from '../../../../shared/services/cart.service';
-import { RootService } from '../../../../shared/services/root.service';
+import { RootService } from 'src/app/shared/services/root.service';
+import { WishlistService } from 'src/app/shared/services/wishlist.service';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { Product } from 'src/app/shared/interfaces/product';
 
 @Component({
     selector: 'app-wishlist',

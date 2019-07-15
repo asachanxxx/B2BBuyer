@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ProductFeaturesSection, ProductReview } from '../../../../shared/interfaces/product';
-import { specification } from '../../../../../data/shop-product-spec';
-import { reviews } from '../../../../../data/shop-product-reviews';
+import { ProductFeaturesSection, ProductReview } from 'src/app/shared/interfaces/product';
+import { specification } from 'src/data/shop-product-spec';
+import { reviews } from 'src/data/shop-product-reviews';
 
 @Component({
     selector: 'app-product-tabs',

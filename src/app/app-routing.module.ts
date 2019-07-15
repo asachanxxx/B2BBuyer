@@ -22,7 +22,7 @@ export function makeRoutes(homeComponent: Type<any>): Routes {
         },
         {
             path: 'shop',
-            loadChildren: './modules/shop/shop.module#ShopModule'
+            loadChildren: './shop/shop.module#ShopModule'
         },
         {
             path: 'account',

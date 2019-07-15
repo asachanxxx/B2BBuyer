@@ -15,7 +15,7 @@ export class AuthenticationService {
     //we use httpClient just to ignore the intercepter for calling to get token. if token URL intercepted by intercepter it will add extra headers
     private httpClient: HttpClient;
 
-    constructor(private http: HttpClient, private config: GlobalParams, private handler: HttpBackend) {
+    constructor(private http: HttpClient, public config: GlobalParams, private handler: HttpBackend) {
         this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('APIKey'));
         this.currentUser = this.currentUserSubject.asObservable();
         this.httpClient = new HttpClient(handler);

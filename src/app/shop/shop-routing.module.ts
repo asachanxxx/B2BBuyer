@@ -17,6 +17,15 @@ const routes: Routes = [
         redirectTo: 'category-grid-3-columns-sidebar'
     },
     {
+        path: 'productsearchlevels/:id',
+        component: PageCategoryComponent,
+        data: {
+            columns: 3,
+            viewMode: 'grid',
+            sidebarPosition: 'start'
+        }
+    },
+    {
         path: 'category-grid-3-columns-sidebar',
         component: PageCategoryComponent,
         data: {

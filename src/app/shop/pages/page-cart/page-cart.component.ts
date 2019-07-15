@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CartService } from '../../../../shared/services/cart.service';
 import { FormControl, Validators } from '@angular/forms';
-import { CartItem } from '../../../../shared/interfaces/cart-item';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { RootService } from '../../../../shared/services/root.service';
+import { CartItem } from 'src/app/shared/interfaces/cart-item';
+import { RootService } from 'src/app/shared/services/root.service';
+import { CartService } from 'src/app/shared/services/cart.service';
+
 
 interface Item {
     cartItem: CartItem;

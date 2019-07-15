@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../../../shared/interfaces/product';
+import { Product } from 'src/app/shared/interfaces/product';
 
 export type Layout = 'grid'|'grid-with-features'|'list';
 

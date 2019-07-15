@@ -91,5 +91,8 @@ export class BlockProductsCarouselComponent implements OnChanges {
                 }
             }
         }
+
+        console.log("columns-columns" , this.columns);
+        console.log("columns-Products" , this.products);
     }
 }

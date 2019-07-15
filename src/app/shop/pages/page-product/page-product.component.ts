@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { products } from '../../../../../data/shop-products';
-import { Product } from '../../../../shared/interfaces/product';
 import { ActivatedRoute } from '@angular/router';
-import { categories } from '../../../../../data/shop-widget-categories';
 import { map } from 'rxjs/operators';
+import { categories } from 'src/data/shop-block-categories';
+import { Product } from 'src/app/shared/interfaces/product';
+import { products } from 'src/data/shop-products';
 
 @Component({
     selector: 'app-page-product',
@@ -18,6 +18,7 @@ export class PageProductComponent {
     sidebarPosition: 'start'|'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
 
     constructor(private route: ActivatedRoute) {
+        console.log("products - PageProductComponent" , this.products)
         this.route.data.subscribe(data => {
             this.layout = 'layout' in data ? data.layout : this.layout;
             this.sidebarPosition = 'sidebarPosition' in data ? data.sidebarPosition : this.sidebarPosition;

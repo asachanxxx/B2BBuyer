@@ -8,10 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
 // modules
-import { BlocksModule } from '../blocks/blocks.module';
-import { SharedModule } from '../../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
-import { WidgetsModule } from '../widgets/widgets.module';
 
 // components
 import { ProductsViewComponent } from './components/products-view/products-view.component';
@@ -26,6 +23,9 @@ import { PageProductComponent } from './pages/page-product/page-product.componen
 import { PageTrackOrderComponent } from './pages/page-track-order/page-track-order.component';
 import { PageWishlistComponent } from './pages/page-wishlist/page-wishlist.component';
 import { PageLevelviewComponent } from './pages/page-levelview/page-levelview.component';
+import { BlocksModule } from '../modules/blocks/blocks.module';
+import { SharedModule } from '../shared/shared.module';
+import { WidgetsModule } from '../modules/widgets/widgets.module';
 
 @NgModule({
     declarations: [

@@ -8,7 +8,7 @@ import { DirectionService } from '../../../shared/services/direction.service';
     styleUrls: ['./block-slideshow.component.scss']
 })
 export class BlockSlideshowComponent {
-    @Input() withDepartments = false;
+    @Input() withDepartments = true;
 
     options = {
         nav: false,

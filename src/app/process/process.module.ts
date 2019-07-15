@@ -5,7 +5,6 @@ import { ProcessRoutingModule } from './process-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { WidgetsModule } from '../modules/widgets/widgets.module';
-import { ShopModule } from '../modules/shop/shop.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuoteRequestComponent } from './quote-request/quote-request.component';
 import { ReturnanItemComponent } from './returnan-item/returnan-item.component';
@@ -36,8 +35,7 @@ import { ProductsearchpageComponent } from './productSearch/productsearchpage/pr
      // modules
      SharedModule,
      WidgetsModule,
-     ShopModule,
-     CarouselModule
+      CarouselModule
   ]
 })
 export class ProcessModule { }

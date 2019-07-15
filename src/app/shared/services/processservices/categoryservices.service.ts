@@ -17,4 +17,14 @@ export class CategoryService {
         return val;
     }
 
+    GetAllSubCategor2sUsingID(SubCat2Id: number):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "Category/GetAllSubCategor2sUsingID?SubCat2Id=" + SubCat2Id )
+        return val;
+    }
+    
+    GetAllSubCategorsUsingID(SubCatId: number):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "Category/GetAllSubCategorsUsingID?SubCatId=" + SubCatId )
+        return val;
+    }
+    
 }

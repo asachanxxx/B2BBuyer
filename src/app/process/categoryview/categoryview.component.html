@@ -52,14 +52,15 @@
             <div class="block block-sidebar">
               <div class="block-sidebar__item">
                 <div class="widget-categories--location--{{ location }} widget">
-                 
-                 
-                  <h4 class="widget__title pb-0"> {{ category.Subcategory1Name }}</h4>
+                  <a [routerLink]="['/classic/shop/productsearchlevels/' ,'x' +category.Subcategory1Id    ] ">
+                    <h4 class="widget__title pb-0"> {{ category.Subcategory1Name }}</h4>
+                  </a>
+
                   <ul class="widget-categories__list" appCollapse>
                     <li *ngFor="let catdet of category.Details" class="widget-categories__item"
                       appCollapseItem="widget-categories__item--open" #collapse="appCollapseItem">
                       <div class="widget-categories__row">
-                        <a [routerLink]="['/classic/process/productsearch/' ,catdet.Subcategory2Id] ">
+                        <a [routerLink]="['/classic/shop/productsearchlevels/', 'y' + catdet.Subcategory2Id  ]">
                           <app-icon class="widget-categories__arrow" name="arrow-rounded-right-6x9" size="6x9">
                           </app-icon>
                           {{ catdet.Subcategory2Name }}

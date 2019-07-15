@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit, OnInit {
         private zone: NgZone,
         private scroller: ViewportScroller,
         private currency: CurrencyService,
-        private config:GlobalParams,
+        public config:GlobalParams,
         private authprice:AuthenticationService
     ) {}
 

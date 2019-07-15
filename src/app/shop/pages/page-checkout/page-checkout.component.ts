@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CartService } from '../../../../shared/services/cart.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
     selector: 'app-checkout',

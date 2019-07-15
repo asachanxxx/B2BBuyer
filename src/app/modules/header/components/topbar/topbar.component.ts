@@ -26,7 +26,7 @@ export class TopbarComponent {
     ];
 
     constructor(
-        public currencyService: CurrencyService, private config: GlobalParams 
+        public currencyService: CurrencyService, public config: GlobalParams 
     ) {
         
       

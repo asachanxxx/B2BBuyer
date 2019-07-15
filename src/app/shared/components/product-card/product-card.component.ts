@@ -34,7 +34,11 @@ export class ProductCardComponent implements OnInit, OnDestroy {
         public compare: CompareService,
         public quickview: QuickviewService,
         public currency: CurrencyService
-    ) { }
+    ) {
+
+            console.log("ProductCardComponent : " , this.product)
+
+     }
 
     ngOnInit(): void {
         this.currency.changes$.pipe(takeUntil(this.destroy$)).subscribe(() => {

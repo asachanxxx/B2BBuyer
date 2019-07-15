@@ -1,6 +1,6 @@
-<app-page-header [header]="'Screwdrivers'" [breadcrumbs]="[
+<app-page-header *ngIf="headertext" [header]="headertext" [breadcrumbs]="[
     {label: 'Home',         url: '../../'},
-    {label: 'Screwdrivers', url: ''}
+    {label: headertext, url: ''}
 ]"></app-page-header>
 
 <ng-template #sidebar>

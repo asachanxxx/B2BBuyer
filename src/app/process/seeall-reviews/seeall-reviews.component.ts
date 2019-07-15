@@ -8,7 +8,7 @@ import { GlobalParams } from 'src/app/shared/services/CorparateServices/globalpa
 })
 export class SeeallReviewsComponent implements OnInit {
 
-  constructor(private config:GlobalParams) { }
+  constructor(public config:GlobalParams) { }
 
   ngOnInit() {
   }

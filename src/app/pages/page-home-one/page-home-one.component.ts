@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { posts } from '../../../data/blog-posts';
 import { brands } from '../../../data/shop-brands';
 import { products } from '../../../data/shop-products';
 import { categories } from '../../../data/shop-block-categories';
+import { MainPageService } from 'src/app/shared/services/processservices/mainpage.service';
 
 @Component({
     selector: 'app-home',
     templateUrl: './page-home-one.component.html',
-    styleUrls: ['./page-home-one.component.scss']
+    styleUrls: ['./page-home-one.component.scss'],
+    providers: [MainPageService]
 })
-export class PageHomeOneComponent {
+export class PageHomeOneComponent implements OnInit {
+
+
+
     products = products;
     categories = categories;
     posts = posts;
     brands = brands;
+    Featuredproductsinc;
+    featuredProducts
 
     columns = [
         {
@@ -30,46 +37,57 @@ export class PageHomeOneComponent {
         }
     ];
 
-    featuredProducts = {
-        loading: false,
-        products: products.slice(),
-        groups: [
-            {name: 'All', current: true},
-            {name: 'Power Tools', current: false},
-            {name: 'Hand Tools', current: false},
-            {name: 'Plumbing', current: false}
-        ],
+    ngOnInit(): void {
 
-        timeout: null, // only for demo
+        this.service.GetFeatureProducts().subscribe(
+            data => {
+                this.Featuredproductsinc = data;
+                console.log(this.Featuredproductsinc);
+                this.featuredProducts = {
+                    loading: false,
+                    products: this.Featuredproductsinc.slice(),
+                    groups: [
+                        { name: 'All', current: true },
+                        { name: 'Processors', current: false },
+                        { name: 'VGA', current: false },
+                        { name: 'Memory', current: false }
+                    ],
+                    timeout: null, // only for demo
+                    groupChange: group => {
+                        this.featuredProducts.loading = true;
+                        clearTimeout(this.featuredProducts.timeout);
+                        this.featuredProducts.timeout = setTimeout(() => {
+                            const itemsArray = this.Featuredproductsinc;
+                            const newItemsArray = [];
+                            while (itemsArray.length > 0) {
+                                const randomIndex = Math.floor(Math.random() * itemsArray.length);
+                                console.log("randomIndex  ", randomIndex)
+                                const randomItem = itemsArray.splice(randomIndex, 1)[0];
+                                newItemsArray.push(randomItem);
+                            }
+                            this.featuredProducts.loading = false;
+                        }, 1000);
+                    }
+                };
 
-        groupChange: group => {
-            // only for demo
-            this.featuredProducts.loading = true;
+                console.log("featuredProducts  ", this.featuredProducts)
 
-            clearTimeout(this.featuredProducts.timeout);
 
-            this.featuredProducts.timeout = setTimeout(() => {
-                const itemsArray = this.featuredProducts.products;
-                const newItemsArray = [];
-                while (itemsArray.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * itemsArray.length);
-                    const randomItem = itemsArray.splice(randomIndex, 1)[0];
-                    newItemsArray.push(randomItem);
-                }
-                this.featuredProducts.products = newItemsArray;
-                this.featuredProducts.loading = false;
-            }, 1000);
-        }
-    };
+            }
+        )
+    }
+
+
+
 
     newArrivals = {
         loading: false,
         products: products.slice(),
         groups: [
-            {name: 'All', current: true},
-            {name: 'Power Tools', current: false},
-            {name: 'Hand Tools', current: false},
-            {name: 'Plumbing', current: false}
+            { name: 'All', current: true },
+            { name: 'Power Tools', current: false },
+            { name: 'Hand Tools', current: false },
+            { name: 'Plumbing', current: false }
         ],
 
         timeout: null, // only for demo
@@ -94,5 +112,9 @@ export class PageHomeOneComponent {
         }
     };
 
-    constructor() { }
+    constructor(private service: MainPageService) {
+
+      //  console.log("featuredProducts  ", this.featuredProducts)
+
+    }
 }

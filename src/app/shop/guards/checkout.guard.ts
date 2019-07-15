@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CartService } from '../../../shared/services/cart.service';
 import { map } from 'rxjs/operators';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Injectable({
     providedIn: 'root'
