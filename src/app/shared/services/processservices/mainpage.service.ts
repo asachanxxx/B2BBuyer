@@ -3,6 +3,7 @@ import { User } from 'src/app/auth/_models/user.models';
 import { HttpClient } from '@angular/common/http';
 import { GlobalParams } from '../CorparateServices/globalparams.service';
 import { Observable } from 'rxjs';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 @Injectable()
@@ -13,9 +14,20 @@ export class MainPageService {
     }
 
     GetFeatureProducts():Observable<any> {
-        var val =  this.http.get<any>(this.config.PrimaryAPI + "Product/GetFeatureProducts")
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetFeatureProducts")
+        return val;
+    }
+    GetBestSellers():Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetBestSellProducts")
+        return val;
+    }
+    GetNewArrivales():Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetNewArrivalProduct")
         return val;
     }
 
-    
+    GetSingleProduct(Id:number):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetSingleProduct?id=" + Id)
+        return val;
+    }
 }

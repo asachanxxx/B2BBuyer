@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, OnInit, OnDestroy } from '@angular/core';
 import { Product } from '../../../shared/interfaces/product';
 import { BlockHeaderGroup } from '../../../shared/interfaces/block-header-group';
 import { DirectionService } from '../../../shared/services/direction.service';
@@ -8,11 +8,15 @@ import { DirectionService } from '../../../shared/services/direction.service';
     templateUrl: './block-products-carousel.component.html',
     styleUrls: ['./block-products-carousel.component.scss']
 })
-export class BlockProductsCarouselComponent implements OnChanges {
+export class BlockProductsCarouselComponent implements OnChanges ,OnInit  {
+
+   
+  
     @Input() header: string;
     @Input() layout: 'grid-4'|'grid-4-sm'|'grid-5'|'horizontal' = 'grid-4';
     @Input() rows = 1;
     @Input() products: Product[] = [];
+    @Input() Specialproducts: Product[] = [];
     @Input() groups: BlockHeaderGroup[] = [];
     @Input() withSidebar = false;
     @Input() loading = false;
@@ -75,24 +79,17 @@ export class BlockProductsCarouselComponent implements OnChanges {
 
     constructor(
         private direction: DirectionService
-    ) { }
+    ) {
+     }
+
+     ngOnInit(): void {
+        var products = this.products;
+        while (products.length > 0) {
+            this.columns.push(products.splice(0, this.rows));
+        }
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
-        const properties = Object.keys(changes);
-
-        if (properties.includes('products') || properties.includes('row')) {
-            this.columns = [];
-
-            if (this.rows > 0) {
-                const products = this.products.slice();
-
-                while (products.length > 0) {
-                    this.columns.push(products.splice(0, this.rows));
-                }
-            }
-        }
-
-        console.log("columns-columns" , this.columns);
-        console.log("columns-Products" , this.products);
+        var products = this.Specialproducts;
     }
 }

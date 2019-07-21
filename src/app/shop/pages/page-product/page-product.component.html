@@ -5,7 +5,7 @@
 ]"></app-page-header>
 
 <ng-container *ngIf="layout !== 'sidebar'">
-    <div class="block">
+    <div class="block" *ngIf="products">
         <div class="container">
             <app-product [product]="product" [layout]="layout"></app-product>
 

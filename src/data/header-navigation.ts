@@ -85,9 +85,6 @@ export const navigation: NavigationLink[] = [
             items: [
                 { label: 'Quote Request', url: './process/quote-request' },
                 // { label: 'Quotation History', url: './process/quotation-history' },
-                { label: 'Return an Item', url: './process/return-an-item' },
-                // { label: 'Return History', url: './process/return-request-history' },
-                // { label: 'Order History', url: './process/order-history' },
                 { label: 'Shipping Charges', url: './process/shipping-charges' },
             ]
         }

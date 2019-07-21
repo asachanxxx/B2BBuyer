@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { BlockHeaderGroup } from '../../../../shared/interfaces/block-header-group';
 
 @Component({
@@ -6,7 +6,8 @@ import { BlockHeaderGroup } from '../../../../shared/interfaces/block-header-gro
     templateUrl: './block-header.component.html',
     styleUrls: ['./block-header.component.scss']
 })
-export class BlockHeaderComponent {
+export class BlockHeaderComponent implements OnInit {
+  
     @Input() header: string;
     @Input() arrows = false;
     @Input() groups: BlockHeaderGroup[] = [];
@@ -19,7 +20,14 @@ export class BlockHeaderComponent {
     constructor() { }
 
     setGroup(group: BlockHeaderGroup): void {
+        console.log("setGroup this.groups " , this.groups)
+        console.log("setGroup groups " , group)
         this.groups.forEach(g => g.current = g === group);
         this.groupChange.emit(group);
+    }
+
+    ngOnInit(): void {
+        
+        console.log("BlockHeaderComponent  " ,this.groups)
     }
 }
