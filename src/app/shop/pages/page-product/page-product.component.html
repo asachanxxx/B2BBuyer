@@ -6,13 +6,12 @@
 
 <ng-container *ngIf="layout !== 'sidebar'">
     <div class="block" *ngIf="products">
-        <div class="container">
+        <div class="container" *ngIf="product">
             <app-product [product]="product" [layout]="layout"></app-product>
 
-            <app-product-tabs></app-product-tabs>
+            <app-product-tabs [productid] = "passingProID"></app-product-tabs>
         </div>
     </div>
-
     <app-block-products-carousel header="Related Products" [products]="products" [rows]="1" layout="grid-5"></app-block-products-carousel>
 </ng-container>
 
@@ -30,7 +29,7 @@
         </div>
     </ng-template>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="shop-layout shop-layout--sidebar--{{ sidebarPosition }}">
             <ng-container *ngIf="sidebarPosition === 'start'" [ngTemplateOutlet]="sidebar"></ng-container>
             <div class="shop-layout__content">
@@ -45,4 +44,4 @@
             <ng-container *ngIf="sidebarPosition === 'end'" [ngTemplateOutlet]="sidebar"></ng-container>
         </div>
     </div>
-</ng-container>
+</ng-container> -->

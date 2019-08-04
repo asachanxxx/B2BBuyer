@@ -51,6 +51,7 @@ export class ProductComponent implements OnInit {
     }
 
     @Input() set product(value: Product) {
+        console.log(" @Input() set product" , value);
         this.dataProduct = value;
         this.images = value ? this.dataProduct.images.map((url, index) => {
             return {

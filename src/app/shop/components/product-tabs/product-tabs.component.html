@@ -41,6 +41,12 @@
                     ac lobortis sit amet, dapibus sit amet purus. Nam sed lorem nisi. Vestibulum ultrices tincidunt turpis,
                     sit amet fringilla odio scelerisque non.
                 </p>
+
+                <!-- <iframe width="100%" [src]="'https://www.gigabyte.com/Graphics-Card/GV-N2070WF3-8GC#kf' | safe"></iframe>
+
+                <iframe src="https://www.gigabyte.com/Graphics-Card/GV-N2070WF3-8GC#kf">
+                    
+                </iframe> -->
             </div>
         </div>
 
@@ -48,9 +54,9 @@
             <div class="spec">
                 <h3 class="spec__header">Specification</h3>
                 <div *ngFor="let section of specification" class="spec__section">
-                    <h4 class="spec__section-title">{{ section.name }}</h4>
-                    <div *ngFor="let feature of section.features" class="spec__row">
-                        <div class="spec__name">{{ feature.name }}</div><div class="spec__value">{{ feature.value }}</div>
+                    <h4 class="spec__section-title">{{ section.GroupName }}</h4>
+                    <div *ngFor="let feature of section.Details" class="spec__row">
+                        <div class="spec__name">{{ feature.SpecItemName }}</div><div class="spec__value">{{ feature.Value }}</div>
                     </div>
                 </div>
                 <div class="spec__disclaimer">

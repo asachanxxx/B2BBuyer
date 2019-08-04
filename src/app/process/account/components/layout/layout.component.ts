@@ -17,7 +17,7 @@ export class LayoutComponent {
     linksSale: { label: string; url: string }[] = [
         { label: 'Order History', url: './order-history' },
         { label: 'Quotation History', url: './quotation-history' },
-        { label: 'Return History', url: './return-request-history' },
+        // { label: 'Return History', url: './return-request-history' },
     ];
 
     linksNotifications: { label: string; url: string }[] = [

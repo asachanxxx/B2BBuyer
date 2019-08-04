@@ -32,6 +32,7 @@ import { RatingComponent } from './components/rating/rating.component';
 
 // pipes
 import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
+import { SafePipe } from './pipes/SafePipe.pipe';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
         QuickviewComponent,
         RatingComponent,
         // pipes
-        CurrencyFormatPipe
+        CurrencyFormatPipe,
+        SafePipe
     ],
     imports: [
         // modules (angular)
@@ -93,7 +95,8 @@ import { CurrencyFormatPipe } from './pipes/currency-format.pipe';
         QuickviewComponent,
         RatingComponent,
         // pipes
-        CurrencyFormatPipe
+        CurrencyFormatPipe,
+        SafePipe
     ]
 })
 export class SharedModule { }

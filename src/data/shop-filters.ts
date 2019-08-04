@@ -58,6 +58,18 @@ export const filters: ProductFilter[] = [
                 {label: 'WeVALT', count: 0, checked: true, disabled: true},
                 {label: 'Hammer', count: 0, checked: false, disabled: true},
                 {label: 'Mitasia', count: 1, checked: false, disabled: false},
+                {label: 'Metaggo', count: 25, checked: false, disabled: false},
+                {label: 'Wakita', count: 7, checked: false, disabled: false},
+                {label: 'Zosch', count: 42, checked: false, disabled: false},
+                {label: 'WeVALT', count: 0, checked: true, disabled: true},
+                {label: 'Hammer', count: 0, checked: false, disabled: true},
+                {label: 'Mitasia', count: 1, checked: false, disabled: false},
+                {label: 'Metaggo', count: 25, checked: false, disabled: false},
+                {label: 'Wakita', count: 7, checked: false, disabled: false},
+                {label: 'Zosch', count: 42, checked: false, disabled: false},
+                {label: 'WeVALT', count: 0, checked: true, disabled: true},
+                {label: 'Hammer', count: 0, checked: false, disabled: true},
+                {label: 'Mitasia', count: 1, checked: false, disabled: false},
                 {label: 'Metaggo', count: 25, checked: false, disabled: false}
             ]
         }

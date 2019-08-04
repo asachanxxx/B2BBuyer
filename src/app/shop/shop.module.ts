@@ -26,6 +26,7 @@ import { PageLevelviewComponent } from './pages/page-levelview/page-levelview.co
 import { BlocksModule } from '../modules/blocks/blocks.module';
 import { SharedModule } from '../shared/shared.module';
 import { WidgetsModule } from '../modules/widgets/widgets.module';
+import { SafePipe } from '../shared/pipes/SafePipe.pipe';
 
 @NgModule({
     declarations: [

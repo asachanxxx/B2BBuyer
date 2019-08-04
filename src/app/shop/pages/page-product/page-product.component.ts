@@ -21,6 +21,8 @@ export class PageProductComponent implements OnInit {
     sidebarPosition: 'start' | 'end' = 'start'; // For LTR scripts "start" is "left" and "end" is "right"
     productid: any;
 
+    passingProID = 1;
+
     constructor(private route: ActivatedRoute, private service: MainPageService) {
         console.log("products - PageProductComponent", this.products)
         this.route.data.subscribe(data => {
@@ -30,43 +32,20 @@ export class PageProductComponent implements OnInit {
         this.route.params.pipe(map(params => {
             if (params.hasOwnProperty('id')) {
                 this.productid = params.id;
-                // const product = products.find(eachProduct => eachProduct.id === parseFloat(params.id));
-
-                // if (product) {
-                //     return product;
-                // }
-                var productlocal ;
-                this.service.GetSingleProduct(this.productid).subscribe(
-                    data => {
-                        productlocal = data;
-                        if (productlocal) {
-                            return productlocal;
-                        }
-                        console.log("Service Data ", this.products, "   this.productid ", this.productid)
-                    }
-                )
+                this.passingProID = params.id;
             }
-
-           //return products[products.length - 1];
-           return productlocal;
-        })).subscribe(
-            product => { 
-                console.log("subscribe product", product)
-                this.product = product
-            }
-
-        );
+        })).subscribe();
     }
 
     ngOnInit(): void {
-        this.GetProduct(this.productid);
+        this.GetProduct(this.productid)
     }
 
     GetProduct(id: number) {
         this.service.GetSingleProduct(id).subscribe(
             data => {
-                this.products = data;
-                console.log("Service Data ", this.products, "   this.productid ", id)
+                this.product = data;
+                console.log("Service Data ", data, "   this.productid ", id)
             }
         )
     }

@@ -38,6 +38,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { AuthenticationService } from './auth/_services/authentication.service';
 import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
+import { SafePipe } from './shared/pipes/SafePipe.pipe';
 
 
 
@@ -50,6 +51,7 @@ import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
         PageHomeOneComponent,
         PageNotFoundComponent,
         PageHomeTwoComponent
+        
     ],
     imports: [
         // modules (angular)
