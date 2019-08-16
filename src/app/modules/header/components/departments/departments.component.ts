@@ -5,17 +5,19 @@ import { departments } from '../../../../../data/header-departments';
 import { DepartmentsService } from '../../../../shared/services/departments.service';
 import { NavigationLink } from '../../../../shared/interfaces/navigation-link';
 import { isPlatformBrowser } from '@angular/common';
+import { MainPageService } from 'src/app/shared/services/processservices/mainpage.service';
 
 @Component({
     selector: 'app-header-departments',
     templateUrl: './departments.component.html',
-    styleUrls: ['./departments.component.scss']
+    styleUrls: ['./departments.component.scss'],
+    providers:[MainPageService]
 })
 export class DepartmentsComponent implements OnInit {
     private destroy$: Subject<any> = new Subject();
 
     items: NavigationLink[] = departments;
-
+    NavigationLink:any;
     isOpen = false;
     fixed = false;
 
@@ -27,7 +29,7 @@ export class DepartmentsComponent implements OnInit {
         @Inject(PLATFORM_ID) private platformId: any,
         private renderer: Renderer2,
         private el: ElementRef,
-        private service: DepartmentsService
+        private service: DepartmentsService, private mainPageService:MainPageService
     ) { 
 
        // console.log("item.menu " ,this.items)
@@ -35,6 +37,8 @@ export class DepartmentsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // this.GetmegaMenuLink();
+        // console.log("items   " , this.items)
         const root = this.element.querySelector('.departments') as HTMLElement;
         const content = this.element.querySelector('.departments__links-wrapper') as HTMLElement;
 
@@ -100,6 +104,22 @@ export class DepartmentsComponent implements OnInit {
             this.open();
         }
     }
+
+
+    
+    // GetmegaMenuLink() {
+    //     this.mainPageService.GetNavigationLink().subscribe(
+    //         data=>{
+    //             this.NavigationLink = data;
+    //             console.log("this.NavigationLink   "  ,this.NavigationLink)
+    //         },
+    //         err=>{
+    //             console.log("this.NavigationLink   "  ,err)
+    //         }
+
+    //     )
+    // }
+
 
     open(): void {
         console.log("DepartmentsComponent: - open");

@@ -2,52 +2,51 @@
     <h4 class="widget__title">Filters</h4>
 
     <div class="widget-filters__list">
-        <div *ngFor="let filter of filters" class="widget-filters__item">
+        <div *ngFor="let filter of rightFilters" class="widget-filters__item">
 
             <div class="filter filter--opened" appCollapseItem="filter--opened" #collapse="appCollapseItem">
                 <button type="button" class="filter__title" (click)="collapse.toggle()">
-                    {{ filter.name }}
+                    {{ filter.SpecItemName }}
                     <app-icon class="filter__arrow" name="arrow-rounded-down-12x7" size="12x7"></app-icon>
                 </button>
                 <div class="filter__body" appCollapseContent>
-                    <div class="filter__container">
+                    <div class="filter__container scrolable">
 
-                        <div *ngIf="filter.type === 'categories'" class="filter-categories">
+                        <!-- <div *ngIf="filter.Details" class="filter-categories">
                             <ul class="filter-categories__list">
-                                <li *ngFor="let item of filter.options.items" class="filter-categories__item filter-categories__item--{{ item.type }}">
-                                    <app-icon *ngIf="item.type == 'parent'" class="filter-categories__arrow"  name="arrow-rounded-left-6x9" size="6x9"></app-icon>
-                                    <a routerLink="./">{{ item.name }}</a>
+                                <li *ngFor="let item of filter.Details" class="filter-categories__item filter-categories__item--{{ item.type }}">
+                                    <app-icon *ngIf="item" class="filter-categories__arrow"  name="arrow-rounded-left-6x9" size="6x9"></app-icon>
+                                    <a routerLink="./">{{ item.SpecValue }}</a>
                                     <div class="filter-categories__counter">{{ item.count }}</div>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
-                        <div *ngIf="['checkbox', 'radio'].includes(filter.type)" class="filter-list">
+                        <div class="filter-list">
                             <div class="filter-list__list">
-                                <label *ngFor="let item of filter.options.items" class="filter-list__item" [ngClass]="{'filter-list__item--disabled': item.disabled}">
-
-                                    <span *ngIf="filter.type === 'checkbox'" class="filter-list__input input-check">
+                                <label *ngFor="let item of filter.Details" class="filter-list__item" [ngClass]="{'filter-list__item--disabled': item.disabled}">
+                                    <span *ngIf="item.type === 'checkbox'" class="filter-list__input input-check">
                                         <span class="input-check__body">
-                                            <input class="input-check__input" type="checkbox" [checked]="item.checked" [disabled]="item.disabled">
+                                            <input class="input-check__input" type="checkbox" [checked]="item.checked_def" [disabled]="item.disabled">
                                             <span class="input-check__box"></span>
                                             <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
                                         </span>
                                     </span>
 
-                                    <span *ngIf="filter.type === 'radio'" class="filter-list__input input-radio">
+                                    <!-- <span *ngIf="item.type === 'radio'" class="filter-list__input input-radio">
                                         <span class="input-radio__body">
-                                            <input class="input-radio__input" [name]="filter.options.name" type="radio" [checked]="item.checked" [disabled]="item.disabled">
+                                            <input class="input-radio__input" [name]="filter.options.name" type="radio" [checked]="item.checked_def" [disabled]="item.disabled">
                                             <span class="input-radio__circle"></span>
                                         </span>
-                                    </span>
+                                    </span> -->
 
-                                    <span class="filter-list__title">{{ item.label }}</span>
+                                    <span class="filter-list__title">{{ item.SpecValue }}</span>
                                     <span *ngIf="item.count" class="filter-list__counter">{{ item.count }}</span>
                                 </label>
                             </div>
                         </div>
 
-                        <div *ngIf="filter.type === 'color'" class="filter-color">
+                        <!-- <div *ngIf="filter.type === 'color'" class="filter-color">
                             <div class="filter-color__list">
                                 <label *ngFor="let item of filter.options.items" class="filter-color__item">
                                     <span class="filter-color__check input-check-color" [ngClass]="{
@@ -63,7 +62,7 @@
                                     </span>
                                 </label>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div *ngIf="filter.type === 'price' && isPlatformBrowser" class="filter-price">
                             <div class="filter-price__slider">

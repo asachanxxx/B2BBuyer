@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Megamenu } from '../../../../shared/interfaces/megamenu';
 
 @Component({
@@ -6,12 +6,18 @@ import { Megamenu } from '../../../../shared/interfaces/megamenu';
     templateUrl: './megamenu.component.html',
     styleUrls: ['./megamenu.component.scss']
 })
-export class MegamenuComponent {
-    @Input() menu: Megamenu;
+export class MegamenuComponent implements OnInit {
+    @Input() menu: any;
     @Input() departments = false;
 
     constructor() { 
 
+        
+    }
+
+
+    ngOnInit(): void {
         console.log("MegamenuComponent - menu ", this.menu)
     }
+
 }

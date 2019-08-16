@@ -30,4 +30,9 @@ export class MainPageService {
         var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetSingleProduct?id=" + Id)
         return val;
     }
+    GetNavigationLink():Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetNavigationLink")
+        return val;
+    }
+ 
 }

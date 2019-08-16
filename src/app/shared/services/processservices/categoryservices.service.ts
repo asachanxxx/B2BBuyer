@@ -26,5 +26,7 @@ export class CategoryService {
         var val =  this.http.get<any>(this.config.PrimaryAPI + "Category/GetAllSubCategorsUsingID?SubCatId=" + SubCatId )
         return val;
     }
+
+
     
 }
