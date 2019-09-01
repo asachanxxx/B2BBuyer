@@ -1,0 +1,382 @@
+<app-page-header [header]="'NewProfile'" [breadcrumbs]="[
+    {label: 'Home',       url: '../../'},
+    {label: 'NewProfile', url: ''}
+]"></app-page-header>
+
+<div class="block">
+  <div class="container">
+
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <div class="card bg-light">
+          <div class="card-body p-3">
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input " type="radio" (click)="onChange_RegOrganizeation($event)"
+                name="exampleRadios" id="exampleRadios1" [checked]="true" checked>
+              <label class="form-check-label" for="exampleRadios1">
+                <strong> I want to register Organization</strong>
+              </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" (click)="onChange_ExistingOrganization($event)"
+                name="exampleRadios" id="exampleRadios1" [checked]="false">
+              <label class="form-check-label" for="exampleRadios1">
+                <strong> I want to join Existing Organization </strong>
+              </label>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row mb-2" *ngIf="OrganizationSelectPanel">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header p-3 bg-light">
+            <h4>Organization Information</h4>
+            <span>
+              <small>Please select an organization to add the user
+              </small>
+            </span>
+          </div>
+          <div class="card-body p-3">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group mb-2">
+                    <div class="form-group">
+                      <label class="font-14" for="exampleFormControlSelect1">Organization</label>
+                      <select  [ngModel] = "selectedOrg" (change)="onChange_opn_organisationSelect($event.target.value)" class="form-control" id="opn_organisationSelect">.
+                        <ng-container *ngIf="loadedOrgs">
+                          <option *ngFor="let item of loadedOrgs" [value]="item.Id">{{item.Name}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="row mb-2" *ngIf="OrganizationAddPanel">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header p-3 bg-light">
+            <h4>Organization Information</h4>
+            <span>
+              <small>We need organization information just so you can only buy goods here via an organization
+                business account.
+              </small>
+            </span>
+          </div>
+          <div class="card-body p-3">
+
+            <form [formGroup]="loginForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group">
+                      <label class="font-14" for="exampleFormControlSelect1">Business Type</label>
+                      <select class="form-control" id="exampleFormControlSelect1" formControlName="btype">.
+                        <ng-container *ngIf="loadedBtypes">
+                          <option *ngFor="let item of loadedBtypes" [value]="item.Id">{{item.Name}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Organization Name</label>
+                    <input type="text" formControlName="orgname" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.orgname.errors }">
+                    <div *ngIf="submitted && f.orgname.errors" class="invalid-feedback">
+                      <div *ngIf="f.orgname.errors.required">Organization is required</div>
+                    </div>
+
+                    <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div> -->
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Coparate Phone</label>
+                    <input type="text" formControlName="phone" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                    <div *ngIf="f.phone.errors" class="invalid-feedback">
+                      <div *ngIf="f.phone.errors.required">Username is required</div>
+                      <div *ngIf="f.phone.errors.pattern">pattern is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-2">
+                    <label class="font-14">Coparate Email</label>
+                    <input type="text" formControlName="Email" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
+                    <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                      <div *ngIf="f.Email.errors.required">Username is required</div>
+                      <div *ngIf="f.Email.errors.email">Email is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Address Line 1</label>
+                    <input type="text" formControlName="Address1" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
+                    <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address1.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-2">
+                    <label class="font-14">Address Line 2</label>
+                    <input type="text" formControlName="Address2" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.Address2.errors }">
+                    <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address2.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group">
+                      <label class="font-14" for="exampleFormControlSelect1">District</label>
+                      <select (change)="onChange_District($event.target.value)" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="District">
+                        <ng-container *ngIf="loadedDistricts">
+                          <option *ngFor="let item of loadedDistricts" [value]="item.Id">{{item.Name}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group">
+                      <label class="font-14" for="exampleFormControlSelect1">City</label>
+                      <select class="form-control" id="exampleFormControlSelect1" formControlName="City">
+                        <ng-container *ngIf="loadedCities">
+                          <option *ngFor="let item of loadedCities" [value]="item.Id">{{item.Name}}</option>
+                        </ng-container>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Responsible Person</label>
+                    <input type="text" formControlName="Res_Person" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.Res_Person.errors }">
+                    <div *ngIf="submitted && f.Res_Person.errors" class="invalid-feedback">
+                      <div *ngIf="f.Res_Person.errors.required">Responsible Person Name is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Responsible Person's Email</label>
+                    <input type="text" formControlName="Res_Person_email" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f.Res_Person_email.errors }">
+                    <div *ngIf="submitted && f.Res_Person_email.errors" class="invalid-feedback">
+                      <div *ngIf="f.Res_Person_email.errors.required">Responsible Person's Email is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header p-3 bg-light">
+            <h4>User Information</h4>
+            <span>
+              <small>Provide the information for the Primary User who will serve as the account administrator.
+              </small>
+            </span>
+          </div>
+          <div class="card-body p-3">
+
+            <form [formGroup]="loginFormUser">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                      <label class="font-14">Phone Number</label>
+                      <input type="text" formControlName="phone" class="form-control" placeholder=""
+                        [ngClass]="{ 'is-invalid': submitted && f2.phone.errors }">
+                      <div *ngIf="submitted && f2.phone.errors" class="invalid-feedback">
+                        <div *ngIf="f2.phone.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Job Title</label>
+                    <input type="text" formControlName="Jtitle" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.Jtitle.errors }">
+                    <div *ngIf="submitted && f2.Jtitle.errors" class="invalid-feedback">
+                      <div *ngIf="f2.Jtitle.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                      <label class="font-14">First Name</label>
+                      <input type="text" formControlName="fname" class="form-control" placeholder=""
+                        [ngClass]="{ 'is-invalid': submitted && f2.fname.errors }">
+                      <div *ngIf="submitted && f2.fname.errors" class="invalid-feedback">
+                        <div *ngIf="f2.fname.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Last Name</label>
+                    <input type="text" formControlName="lname" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.lname.errors }">
+                    <div *ngIf="submitted && f2.lname.errors" class="invalid-feedback">
+                      <div *ngIf="f2.lname.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                      <label class="font-14">User Name</label>
+                      <input type="text" formControlName="uname" class="form-control" placeholder=""
+                        [ngClass]="{ 'is-invalid': submitted && f2.uname.errors }">
+                      <div *ngIf="submitted && f2.uname.errors" class="invalid-feedback">
+                        <div *ngIf="f2.uname.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Email Name</label>
+                    <input type="text" formControlName="email" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.email.errors }">
+                    <div *ngIf="submitted && f2.email.errors" class="invalid-feedback">
+                      <div *ngIf="f2.email.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                      <label class="font-14">Password</label>
+                      <input type="password" formControlName="psw" class="form-control" placeholder=""
+                        [ngClass]="{ 'is-invalid': submitted && f2.psw.errors }">
+                      <div *ngIf="submitted && f2.psw.errors" class="invalid-feedback">
+                        <div *ngIf="f2.psw.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Confirm Password</label>
+                    <input type="password" formControlName="cpsw" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.cpsw.errors }">
+                    <div *ngIf="submitted && f2.cpsw.errors" class="invalid-feedback">
+                      <div *ngIf="f2.cpsw.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group mb-2">
+                    <div class="form-group mb-2">
+                      <label class="font-14">Address Line 1</label>
+                      <input type="text" formControlName="address1" class="form-control" placeholder=""
+                        [ngClass]="{ 'is-invalid': submitted && f2.address1.errors }">
+                      <div *ngIf="submitted && f2.address1.errors" class="invalid-feedback">
+                        <div *ngIf="f2.address1.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Address Line 1</label>
+                    <input type="text" formControlName="address2" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.address2.errors }">
+                    <div *ngIf="submitted && f2.address2.errors" class="invalid-feedback">
+                      <div *ngIf="f2.address2.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group mb-2">
+                    <label class="font-14">Address Line 1</label>
+                    <input type="text" formControlName="address3" class="form-control" placeholder=""
+                      [ngClass]="{ 'is-invalid': submitted && f2.address3.errors }">
+                    <div *ngIf="submitted && f2.address3.errors" class="invalid-feedback">
+                      <div *ngIf="f2.address3.errors.required">Username is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <button type="button" (click)="onSubmit()" class="btn btn-primary  mt-md-3 mt-lg-4 text-lowercase float-right">
+          Create An Account ►</button>
+      </div>
+    </div>
+
+  </div>

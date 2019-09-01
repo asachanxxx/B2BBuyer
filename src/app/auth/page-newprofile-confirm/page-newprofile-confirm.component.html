@@ -1,0 +1,35 @@
+<app-page-header [header]="'NewProfile'" [breadcrumbs]="[
+    {label: 'Home',       url: '../../'},
+    {label: 'NewProfile', url: ''}
+]"></app-page-header>
+
+<div class="block">
+  <div class="container">
+
+  
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header p-3 bg-light">
+            <h4>Organization Information Confirmation</h4>
+          </div>
+          <div class="card-body p-3">
+              <p><strong>Welcome to TechThrong</strong> </p>
+              <p>This is the confirmation of the following details.Also note that you have to log in once again becouse system not loged you automatically</p>
+              <p>Please follow the provided email address to activate the organization and the Supper User account. 
+                if you don't recive an email please click <span><a href="">Here</a></span> for Manual activation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <button type="button" (click)="onSubmit()" class="btn btn-primary  mt-md-3 mt-lg-4 text-lowercase float-right">
+         Return to home ►</button>
+      </div>
+    </div>
+
+  </div>

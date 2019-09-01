@@ -7,7 +7,7 @@ import { addresses } from '../../../../../data/account-addresses';
 @Component({
     selector: 'app-page-dashboard',
     templateUrl: './page-dashboard.component.html',
-    styleUrls: ['./page-dashboard.component.sass']
+    styleUrls: ['./page-dashboard.component.scss']
 })
 export class PageDashboardComponent {
     address: Address = addresses[0];

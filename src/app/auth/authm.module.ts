@@ -7,14 +7,22 @@ import { HeaderModule } from '../modules/header/header.module';
 import { SharedModule } from '../shared/shared.module';
 import { WidgetsModule } from '../modules/widgets/widgets.module';
 import { LogoutComponent } from './logout/logout.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ShopModule } from '../shop/shop.module';
+import { PageNewprofileComponent } from './page-newprofile/page-newprofile.component';
+import { PageNewprofileConfirmComponent } from './page-newprofile-confirm/page-newprofile-confirm.component';
+import { PageForgetpasswordComponent } from './page-forgetpassword/page-forgetpassword.component';
+import { PagePasswordResetComponent } from './page-password-reset/page-password-reset.component';
 
 @NgModule({
   declarations: [
     PageLoginComponent,
     AlertsComponent_My,
-    LogoutComponent
+    LogoutComponent,
+    PageNewprofileComponent,
+    PageNewprofileConfirmComponent,
+    PageForgetpasswordComponent,
+    PagePasswordResetComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +32,8 @@ import { ShopModule } from '../shop/shop.module';
      SharedModule,
      WidgetsModule,
      ShopModule,
-     ReactiveFormsModule 
+     ReactiveFormsModule,
+     FormsModule       
 
   ]
 })

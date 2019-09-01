@@ -4,6 +4,18 @@ import { User } from 'src/app/auth/_models/user.models';
 @Injectable()
 export class GlobalParams{
 
+
+
+    
+    private _MessageCaption : string = "Techtrong Messaging System";
+    public get MessageCaption() : string {
+        return this._MessageCaption;
+    }
+    public set MessageCaption(v : string) {
+        this._MessageCaption = v;
+    }
+    
+
     
     private _commingsoontext : string = "Hey Guys! This page will Come Soon..."
     public get commingsoontext() : string {

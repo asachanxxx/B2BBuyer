@@ -13,18 +13,25 @@
             <div class="col-md-6 d-flex">
                 <div class="card flex-grow-1 mb-md-0">
                     <div class="card-body">
-                        <h3 class="card-title header-style mb-3">existing customers</h3>
+                        <div class="text-center">
+                            <h3 class="card-title header-style mb-1" style="color: #3366cc;">existing customers
+                            </h3>
+                            <small>Use your user name instead of e-mail</small>
+
+                        </div>
                         <form [formGroup]="loginForm">
                             <div class="form-group mb-2">
-                                <label class="font-weight-bold" >UserName</label>
-                                <input type="email" formControlName="username" class="form-control" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                                <label>UserName</label>
+                                <input type="email" formControlName="username" class="form-control" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                                     <div *ngIf="f.username.errors.required">Username is required</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="font-weight-bold">Password</label>
-                                <input type="password" formControlName="password"  class="form-control" placeholder="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                <label>Password</label>
+                                <input type="password" formControlName="password" class="form-control" placeholder=""
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                     <div *ngIf="f.password.errors.required">Password is required</div>
                                 </div>
@@ -46,7 +53,7 @@
                                 <div class="form-check">
                                     <span class="form-check-input input-check">
                                         <span class="input-check__body">
-                                            <input class="input-check__input" type="checkbox" id="login-subscribe">
+                                            <input class="input-check__input" (change)="CheckSubscribe($event)" type="checkbox" id="login-subscribe">
                                             <span class="input-check__box"></span>
                                             <app-icon class="input-check__icon" name="check-9x7" size="9x7"></app-icon>
                                         </span>
@@ -57,13 +64,17 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <small class="form-text text-muted">
-                                        <a href="">Forgotten Password</a>
+                                        <a routerLink="../../auth/forgetpassword">Forgotten
+                                            Password</a>
+                                    </small>
+                                    <small class="form-text text-muted">
+                                        <a routerLink="../../auth/passwordreset"> Reset Password</a>
                                     </small>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <button type="button"  (click) = "onSubmit()"
+                                    <button type="submit" (click)="onSubmit()"
                                         class="btn btn-primary  mt-md-3 mt-lg-4 text-lowercase float-right"> Log
                                         On ►</button>
                                 </div>
@@ -77,7 +88,10 @@
             <div class="col-md-6 d-flex mt-4 mt-md-0">
                 <div class="card flex-grow-1 mb-0">
                     <div class="card-body">
-                        <h3 class="card-title header-style mb-4">New Customers</h3>
+
+                        <div class="text-center">
+                            <h3 class="card-title header-style mb-4" style="color: #3366cc;">New Customers</h3>
+                        </div>
 
                         <p>A NeweggBusiness account is required for logon and purchasing.</p>
                         <p>With an account, you can leverage Web site functions and benefits that include:</p>
@@ -89,7 +103,8 @@
                         </ul>
                         <div class="row">
                             <div class="col-lg-12">
-                                <button type="button" (click)="create_new_account()"
+                                <!-- (click)="create_new_account() -->
+                                <button type="button" routerLink="../../auth/newprofile"
                                     class="btn btn-primary mt-md-3 mt-lg-4 text-lowercase float-right">Create an Account
                                     ►</button>
                             </div>
