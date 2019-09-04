@@ -143,7 +143,7 @@ export class PageNewprofileComponent implements OnInit {
     let phoneNumber = "^(?=(?:\D*\d){10,15}\D*$)\+?[0-9]{1,3}[\s-]?(?:\(0?[0-9]{1,5}\)|[0-9]{1,5})[-\s]?[0-9][\d\s-]{5,7}\s?(?:x[\d-]{0,4})?$";
 
     this.loginForm = this.formbuiler.group({
-      phone: ['', [Validators.required, Validators.maxLength(10)]],
+     // phone: ['', [Validators.required, Validators.maxLength(10)]],
       Email: ['', Validators.required],
       btype: ['', [Validators.required]],
       orgname: ['', [Validators.required]],
@@ -189,7 +189,7 @@ export class PageNewprofileComponent implements OnInit {
         Id: 1,
         BusinessType: this.loginForm.controls["btype"].value,
         OrganizationName: this.loginForm.controls["orgname"].value,
-        MainPhone: this.loginForm.controls["phone"].value,
+        MainPhone: "-",
         AddressLine1: this.loginForm.controls["Address1"].value,
         AddressLine2: this.loginForm.controls["Address2"].value,
         District: this.loginForm.controls["District"].value,
@@ -282,7 +282,7 @@ export class PageNewprofileComponent implements OnInit {
     this.submitted = true;
 
 
- 
+
 
     if (this.OrganizationAddPanel) {
 
@@ -300,8 +300,18 @@ export class PageNewprofileComponent implements OnInit {
           console.log("Saved SuccessFull", data)
           this.route.navigate(['./classic/auth/newprofile-confirm'])
         },
-        err => {
-          console.log("Saved not SuccessFull", err)
+        error => {
+          if (error.status == 0) {
+            this.alertservice.error("Login Service not accessible at this moment. Please contact administrators of the site!.", this.config.MessageCaption)
+          } else if (error.status == 400) {
+            this.alertservice.error("UserName Or Password Not valied . Please try again later!.", this.config.MessageCaption)
+          } else if (error.status == 500) {
+            this.alertservice.error(error.error.ExceptionMessage, this.config.MessageCaption)
+          }
+          else {
+            this.alertservice.error("Unknown error has occured when trying to create user. Please contact our technical team to futher assists you..", this.config.MessageCaption)
+          }
+          console.log("Saved not SuccessFull", error)
         }
       )
     } else {
@@ -321,8 +331,18 @@ export class PageNewprofileComponent implements OnInit {
           console.log("Saved SuccessFull", data)
           this.route.navigate(['./classic/auth/newprofile-confirm'])
         },
-        err => {
-          console.log("Saved not SuccessFull", err)
+        error => {
+          if (error.status == 0) {
+            this.alertservice.error("Login Service not accessible at this moment. Please contact administrators of the site!.", this.config.MessageCaption)
+          } else if (error.status == 400) {
+            this.alertservice.error("UserName Or Password Not valied . Please try again later!.", this.config.MessageCaption)
+          } else if (error.status == 500) {
+            this.alertservice.error(error.error.ExceptionMessage, this.config.MessageCaption)
+          }
+          else {
+            this.alertservice.error("Unknown error has occured when trying to create user. Please contact our technical team to futher assists you..", this.config.MessageCaption)
+          }
+          console.log("Saved not SuccessFull", error)
         }
       )
     }

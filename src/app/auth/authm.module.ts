@@ -13,6 +13,7 @@ import { PageNewprofileComponent } from './page-newprofile/page-newprofile.compo
 import { PageNewprofileConfirmComponent } from './page-newprofile-confirm/page-newprofile-confirm.component';
 import { PageForgetpasswordComponent } from './page-forgetpassword/page-forgetpassword.component';
 import { PagePasswordResetComponent } from './page-password-reset/page-password-reset.component';
+import { ActivateUserExternalComponent } from './activate-user-external/activate-user-external.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PagePasswordResetComponent } from './page-password-reset/page-password-
     PageNewprofileComponent,
     PageNewprofileConfirmComponent,
     PageForgetpasswordComponent,
-    PagePasswordResetComponent
+    PagePasswordResetComponent,
+    ActivateUserExternalComponent
   ],
   imports: [
     CommonModule,

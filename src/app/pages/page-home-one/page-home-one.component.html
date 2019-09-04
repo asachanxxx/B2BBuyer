@@ -10,20 +10,19 @@
 
 <app-block-brands [brands]="brands"></app-block-brands>
 
-<app-block-products-carousel *ngIf="SpecialProducts" header="Special Offers" layout="grid-4"
-    [loading]="SpecialProducts.loading" [products]="SpecialProducts.products" [Specialproducts]="Featuredproductsinc"
-    [groups]="SpecialProducts.groups" (groupChange)="SpecialProducts.groupChange($event)">Loading...........
-</app-block-products-carousel>
 
-<app-block-banner></app-block-banner>
-<app-block-products-carousel *ngIf="newArrivals" header="Bestsellers" layout="horizontal" [rows]="2"
-    [loading]="newArrivals.loading" [products]="featuredProducts.products" [groups]="newArrivals.groups"
-    (groupChange)="newArrivals.groupChange($event)">Loading...........
+
+<app-block-products-carousel *ngIf="BestSellingProduct" header="Best Selling Product" layout="grid-4"
+    [loading]="BestSellingProduct.loading" [products]="BestSellingProduct.products"
+    [Specialproducts]="BestSellingProductsinc" [groups]="BestSellingProduct.groups"
+    (groupChange)="BestSellingProduct.groupChange($event)">Loading...........
 </app-block-products-carousel>
 
 
+
 <app-block-banner></app-block-banner>
-<!-- <app-block-categories header="Popular Categories" layout="classic" [categories]="categories"></app-block-categories> -->
+
+
 
 <app-block-products-carousel *ngIf="newArrivals" header="New Arrivals" layout="horizontal" [rows]="2"
     [loading]="newArrivals.loading" [products]="newArrivals.products" [groups]="newArrivals.groups"
@@ -31,5 +30,30 @@
 </app-block-products-carousel>
 
 
+
+
+<app-block-banner></app-block-banner>
+<!-- <app-block-categories header="Popular Categories" layout="classic" [categories]="categories"></app-block-categories> -->
+
+
+
+<!-- <app-block-products-carousel *ngIf="newArrivals" header="Best Selling Products" layout="horizontal" [rows]="2"
+    [loading]="newArrivals.loading" [products]="newArrivals.products" [groups]="newArrivals.groups"
+    (groupChange)="newArrivals.groupChange($event)">Loading...........
+</app-block-products-carousel> -->
+
+
+
+
 <!-- 
 <app-block-product-columns [columns]="columns"></app-block-product-columns> -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="SiteUnder">
+                <p>This section is for testing perpose and will remove in original Site</p>
+                <a [routerLink]="['/classic/auth/activateuserexternal','39ad150e-c7eb-4af8-b419-008a888dd765']">Activate User</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,9 +27,9 @@
             <app-rating [value]="product.rating"></app-rating>
             <div class="product-card__rating-legend">{{ product.reviews }} Reviews</div>
         </div>
-        <ul *ngIf="product.features.length" class="product-card__features-list">
+        <!-- <ul *ngIf="product.features.length" class="product-card__features-list">
             <li *ngFor="let feature of product.features">{{ feature.name }}: {{ feature.value }}</li>
-        </ul>
+        </ul> -->
     </div>
     <div class="product-card__actions">
         <div class="product-card__availability">

@@ -17,12 +17,12 @@ export class PageHomeOneComponent implements OnInit {
     posts = posts;
     brands = brands;
     BestSellingProductsinc
+    BestSellingProduct
     Featuredproductsinc;
     SpecialProductssinc;
     newArrivalsSinc;
     featuredProducts
     SpecialProducts
-    BestSellingProduct
     newArrivals
 
     columns = [
@@ -42,42 +42,76 @@ export class PageHomeOneComponent implements OnInit {
 
     ngOnInit(): void {
 
-            //Getting the Fetured products 
-            this.service.GetFeatureProducts().subscribe(
-                data => {
-                    console.log(" GetFeatureProducts ", data)
-                    this.Featuredproductsinc = data;
-                    this.featuredProducts = {
-                        loading: false,
-                        products: this.Featuredproductsinc,
-                        groups: [
-                            { name: 'All', current: true },
-                            { name: 'Processors', current: false },
-                            { name: 'VGA', current: false },
-                            { name: 'Memory', current: false }
-                        ],
-                        timeout: null, // only for demo
-                        groupChange: group => {
-                            this.featuredProducts.loading = true;
-                            clearTimeout(this.featuredProducts.timeout);
-                            this.featuredProducts.timeout = setTimeout(() => {
-                                const itemsArray = this.Featuredproductsinc;
-                                const newItemsArray = [];
-                                while (itemsArray.length > 0) {
-                                    const randomIndex = Math.floor(Math.random() * itemsArray.length);
-                                    const randomItem = itemsArray.splice(randomIndex, 1)[0];
-                                    newItemsArray.push(randomItem);
-                                }
-                                this.featuredProducts.loading = false;
-                            }, 1000);
-                        }
-                    };
-                }
-            )
-
-
-
         //Getting the Fetured products 
+        // this.service.GetFeatureProducts().subscribe(
+        //     data => {
+
+        //         this.Featuredproductsinc = data;
+        //         this.featuredProducts = {
+        //             loading: false,
+        //             products: this.Featuredproductsinc,
+        //             groups: [
+        //                 { name: 'All', current: true },
+        //                 { name: 'Processors', current: false },
+        //                 { name: 'VGA', current: false },
+        //                 { name: 'Memory', current: false }
+        //             ],
+        //             timeout: null, // only for demo
+        //             groupChange: group => {
+        //                 this.featuredProducts.loading = true;
+        //                 clearTimeout(this.featuredProducts.timeout);
+        //                 this.featuredProducts.timeout = setTimeout(() => {
+        //                     const itemsArray = this.Featuredproductsinc;
+        //                     const newItemsArray = [];
+        //                     while (itemsArray.length > 0) {
+        //                         const randomIndex = Math.floor(Math.random() * itemsArray.length);
+        //                         const randomItem = itemsArray.splice(randomIndex, 1)[0];
+        //                         newItemsArray.push(randomItem);
+        //                     }
+        //                     this.featuredProducts.loading = false;
+        //                 }, 1000);
+        //             }
+        //         };
+        //         console.log(" GetFeatureProducts 1x ",  this.featuredProducts)
+        //     }
+        // )
+
+
+
+        // //Getting the Fetured products 
+        // this.service.GetFeatureProducts().subscribe(
+        //     data => {
+        //         console.log(" GetFeatureProducts 2x-point 1", data)
+        //         this.Featuredproductsinc = data;
+        //         this.featuredProducts = {
+        //             loading: false,
+        //             products: data,
+        //             groups: [
+        //                 { name: 'All', current: true },
+        //                 { name: 'Processors', current: false },
+        //                 { name: 'VGA', current: false },
+        //                 { name: 'Memory', current: false }
+        //             ],
+        //             timeout: null, // only for demo
+        //             groupChange: group => {
+        //                 this.featuredProducts.loading = true;
+        //                 clearTimeout(this.featuredProducts.timeout);
+        //                 this.featuredProducts.timeout = setTimeout(() => {
+        //                     const itemsArray = this.Featuredproductsinc;
+        //                     const newItemsArray = [];
+        //                     while (itemsArray.length > 0) {
+        //                         const randomIndex = Math.floor(Math.random() * itemsArray.length);
+        //                         const randomItem = itemsArray.splice(randomIndex, 1)[0];
+        //                         newItemsArray.push(randomItem);
+        //                     }
+        //                     this.featuredProducts.loading = false;
+        //                 }, 1000);
+        //             }
+        //         };
+        //         console.log(" GetFeatureProducts 2x", this.featuredProducts , data)
+        //     }
+        // )
+
         this.service.GetFeatureProducts().subscribe(
             data => {
                 console.log(" GetFeatureProducts ", data)
@@ -85,39 +119,6 @@ export class PageHomeOneComponent implements OnInit {
                 this.featuredProducts = {
                     loading: false,
                     products: this.Featuredproductsinc,
-                    groups: [
-                        { name: 'All', current: true },
-                        { name: 'Processors', current: false },
-                        { name: 'VGA', current: false },
-                        { name: 'Memory', current: false }
-                    ],
-                    timeout: null, // only for demo
-                    groupChange: group => {
-                        this.featuredProducts.loading = true;
-                        clearTimeout(this.featuredProducts.timeout);
-                        this.featuredProducts.timeout = setTimeout(() => {
-                            const itemsArray = this.Featuredproductsinc;
-                            const newItemsArray = [];
-                            while (itemsArray.length > 0) {
-                                const randomIndex = Math.floor(Math.random() * itemsArray.length);
-                                const randomItem = itemsArray.splice(randomIndex, 1)[0];
-                                newItemsArray.push(randomItem);
-                            }
-                            this.featuredProducts.loading = false;
-                        }, 1000);
-                    }
-                };
-            }
-        )
-
-        //Getting the BestSelling products 
-        this.service.GetBestSellers().subscribe(
-            data => {
-                console.log(" GetBestSellers ", data)
-                this.SpecialProductssinc = data;
-                this.SpecialProducts = {
-                    loading: false,
-                    products: this.SpecialProductssinc,
                     groups: [
                         { name: 'All', current: true },
                         { name: 'Power Tools', current: false },
@@ -129,20 +130,64 @@ export class PageHomeOneComponent implements OnInit {
 
                     groupChange: group => {
                         // only for demo
-                        this.newArrivals.loading = true;
+                        this.featuredProducts.loading = true;
 
                         clearTimeout(this.newArrivals.timeout);
 
-                        this.newArrivals.timeout = setTimeout(() => {
-                            const itemsArray = this.SpecialProductssinc;
+                        this.featuredProducts.timeout = setTimeout(() => {
+                            const itemsArray = this.Featuredproductsinc;
                             const newItemsArray = [];
                             while (itemsArray.length > 0) {
                                 const randomIndex = Math.floor(Math.random() * itemsArray.length);
                                 const randomItem = itemsArray.splice(randomIndex, 1)[0];
                                 newItemsArray.push(randomItem);
                             }
-                            this.newArrivals.products = newItemsArray;
-                            this.newArrivals.loading = false;
+                            this.featuredProducts.products = newItemsArray;
+                            this.featuredProducts.loading = false;
+                        }, 1000);
+                    }
+                };
+            }
+        )
+
+
+
+
+
+
+        //Getting the BestSelling products 
+        this.service.GetBestSellProducts().subscribe(
+            data => {
+                console.log(" GetBestSellers ", data)
+                this.BestSellingProductsinc = data;
+                this.BestSellingProduct = {
+                    loading: false,
+                    products: this.BestSellingProductsinc,
+                    groups: [
+                        { name: 'All', current: true },
+                        { name: 'Power Tools', current: false },
+                        { name: 'Hand Tools', current: false },
+                        { name: 'Plumbing', current: false }
+                    ],
+
+                    timeout: null, // only for demo
+
+                    groupChange: group => {
+                        // only for demo
+                        this.BestSellingProduct.loading = true;
+
+                        clearTimeout(this.BestSellingProduct.timeout);
+
+                        this.BestSellingProduct.timeout = setTimeout(() => {
+                            const itemsArray = this.BestSellingProductsinc;
+                            const newItemsArray = [];
+                            while (itemsArray.length > 0) {
+                                const randomIndex = Math.floor(Math.random() * itemsArray.length);
+                                const randomItem = itemsArray.splice(randomIndex, 1)[0];
+                                newItemsArray.push(randomItem);
+                            }
+                            this.BestSellingProduct.products = newItemsArray;
+                            this.BestSellingProduct.loading = false;
                         }, 1000);
                     }
                 };
@@ -154,7 +199,7 @@ export class PageHomeOneComponent implements OnInit {
         //Getting the NewArrival products 
         this.service.GetNewArrivales().subscribe(
             data => {
-                console.log(" GetNewArrivales ", data)
+                console.log(" GetNewArrivalesYYY ", data)
                 this.newArrivalsSinc = data;
                 this.newArrivals = {
                     loading: false,
@@ -167,9 +212,9 @@ export class PageHomeOneComponent implements OnInit {
                     ],
                     timeout: null, // only for demo
                     groupChange: group => {
-                        this.SpecialProducts.loading = true;
+                        this.newArrivals.loading = true;
                         clearTimeout(this.featuredProducts.timeout);
-                        this.SpecialProducts.timeout = setTimeout(() => {
+                        this.newArrivals.timeout = setTimeout(() => {
                             const itemsArray = this.newArrivalsSinc;
                             const newItemsArray = [];
                             while (itemsArray.length > 0) {
@@ -177,12 +222,12 @@ export class PageHomeOneComponent implements OnInit {
                                 const randomItem = itemsArray.splice(randomIndex, 1)[0];
                                 newItemsArray.push(randomItem);
                             }
-                            this.SpecialProducts.loading = false;
+                            this.newArrivals.loading = false;
                         }, 1000);
                     }
                 };
+                console.log(" GetNewArrivalesXXX ", this.newArrivals)
 
-                
             }
         )
     }

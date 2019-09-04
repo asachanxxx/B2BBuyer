@@ -49,5 +49,9 @@ export class CorparateService {
     CheckUserActiveStatus(obj: string): Observable<number> {
         return this.http.get<number>(this.config.PrimaryAPI + "/Corparate/CheckUserActiveStatus?UserId="+ obj)
     }
+
+    ActivateUserExternal(obj: string): Observable<number> {
+        return this.http.get<number>(this.config.PrimaryAPI + "/Corparate/ActivateUserExternal?UserId="+ obj)
+    }
    
 }

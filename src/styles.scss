@@ -1,1 +1,23 @@
 @import 'scss/style';
+
+
+input ,option , select{
+   // color: #009688 !important;
+    font-weight: bold !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #b7b1b1 !important;
+    font-size: 0.9em;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #b7b1b1 !important;
+    font-size: 0.9em;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #b7b1b1 !important;
+    font-size: 0.9em;
+  }

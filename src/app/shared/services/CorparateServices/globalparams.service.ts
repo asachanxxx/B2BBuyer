@@ -5,6 +5,15 @@ import { User } from 'src/app/auth/_models/user.models';
 export class GlobalParams{
 
 
+    //http://localhost:4200/classic/auth/activateuserexternal/39ad150e-c7eb-4af8-b419-008a888dd765
+    private _UserActivationPath : string = "http://localhost:4200/classic/auth/activateuserexternal/";
+    public get UserActivationPath() : string {
+        return this._UserActivationPath;
+    }
+    public set UserActivationPath(v : string) {
+        this._UserActivationPath = v;
+    }
+    
 
     
     private _MessageCaption : string = "Techtrong Messaging System";

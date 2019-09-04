@@ -17,7 +17,7 @@ export class MainPageService {
         var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetFeatureProducts")
         return val;
     }
-    GetBestSellers():Observable<any> {
+    GetBestSellProducts():Observable<any> {
         var val =  this.http.get<any>(this.config.PrimaryAPI + "MainPage/GetBestSellProducts")
         return val;
     }

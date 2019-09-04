@@ -15,8 +15,8 @@ export class BlockProductsCarouselComponent implements OnChanges ,OnInit  {
     @Input() header: string;
     @Input() layout: 'grid-4'|'grid-4-sm'|'grid-5'|'horizontal' = 'grid-4';
     @Input() rows = 1;
-    @Input() products: Product[] = [];
-    @Input() Specialproducts: Product[] = [];
+    @Input() products: any[] = [];
+    @Input() Specialproducts: any[] = [];
     @Input() groups: BlockHeaderGroup[] = [];
     @Input() withSidebar = false;
     @Input() loading = false;
@@ -80,13 +80,18 @@ export class BlockProductsCarouselComponent implements OnChanges ,OnInit  {
     constructor(
         private direction: DirectionService
     ) {
+        console.log("BlockProductsCarouselComponent_cons" , this.products)
      }
 
      ngOnInit(): void {
+        console.log("BlockProductsCarouselComponent" , this.products)
         var products = this.products;
         while (products.length > 0) {
             this.columns.push(products.splice(0, this.rows));
         }
+
+       
+
     }
 
     ngOnChanges(changes: SimpleChanges): void {

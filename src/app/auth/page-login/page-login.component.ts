@@ -112,6 +112,13 @@ export class PageLoginComponent implements OnInit {
                                     error => {
                                         if (error.status == 0) {
                                             this.alertservice.error("Login Service not accessible at this moment. Please contact administrators of the site!.", this.config.MessageCaption)
+                                        } else if (error.status == 400) {
+                                            this.alertservice.error("UserName Or Password Not valied . Please try again later!.", this.config.MessageCaption)
+                                        } else if (error.status == 500) {
+                                            this.alertservice.error(error.ExceptionMessage, this.config.MessageCaption)
+                                        }
+                                        else {
+                                            this.alertservice.error("Unknown error has occured when trying to create user. Please contact our technical team to futher assists you..", this.config.MessageCaption)
                                         }
                                     }
                                 )
@@ -124,9 +131,13 @@ export class PageLoginComponent implements OnInit {
                     error => {
                         if (error.status == 0) {
                             this.alertservice.error("Login Service not accessible at this moment. Please contact administrators of the site!.", this.config.MessageCaption)
-                        }
-                        if (error.status == 400) {
+                        } else if (error.status == 400) {
                             this.alertservice.error("UserName Or Password Not valied . Please try again later!.", this.config.MessageCaption)
+                        } else if (error.status == 500) {
+                            this.alertservice.error(error.ExceptionMessage, this.config.MessageCaption)
+                        }
+                        else {
+                            this.alertservice.error("Unknown error has occured when trying to create user. Please contact our technical team to futher assists you..", this.config.MessageCaption)
                         }
 
                         console.log(" error XXXX", error);
