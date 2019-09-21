@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, QueryList, ViewChild, ViewChildren, TemplateRef } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { CarouselComponent, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { FormControl } from '@angular/forms';
@@ -9,6 +9,11 @@ import { isPlatformBrowser } from '@angular/common';
 import { OwlCarouselOConfig } from 'ngx-owl-carousel-o/lib/carousel/owl-carousel-o-config';
 import { PhotoSwipeService } from '../../services/photo-swipe.service';
 import { DirectionService } from '../../services/direction.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ProductService } from '../../services/processservices/product.service';
+
+
+
 
 interface ProductImage {
     id: string;
@@ -16,23 +21,26 @@ interface ProductImage {
     active: boolean;
 }
 
-export type Layout = 'standard'|'sidebar'|'columnar'|'quickview';
+export type Layout = 'standard' | 'sidebar' | 'columnar' | 'quickview';
 
 @Component({
     selector: 'app-product',
     templateUrl: './product.component.html',
-    styleUrls: ['./product.component.scss']
+    styleUrls: ['./product.component.scss'],
+    providers:[ProductService]
 })
 export class ProductComponent implements OnInit {
     private dataProduct: Product;
-    private dataLayout: Layout = 'standard';
+    private dataLayout: Layout = 'columnar';
 
+    SupplierProducts:any[];
+  
     showGallery = true;
     showGalleryTimeout: number;
 
-    @ViewChild('featuredCarousel', {read: CarouselComponent}) featuredCarousel: CarouselComponent;
-    @ViewChild('thumbnailsCarousel', {read: CarouselComponent}) thumbnailsCarousel: CarouselComponent;
-    @ViewChildren('imageElement', {read: ElementRef}) imageElements: QueryList<ElementRef>;
+    @ViewChild('featuredCarousel', { read: CarouselComponent }) featuredCarousel: CarouselComponent;
+    @ViewChild('thumbnailsCarousel', { read: CarouselComponent }) thumbnailsCarousel: CarouselComponent;
+    @ViewChildren('imageElement', { read: ElementRef }) imageElements: QueryList<ElementRef>;
 
     @Input() set layout(value: Layout) {
         this.dataLayout = value;
@@ -50,8 +58,8 @@ export class ProductComponent implements OnInit {
         return this.dataLayout;
     }
 
-    @Input() set product(value: Product) {
-        console.log(" @Input() set product" , value);
+    @Input() set product(value: any) {
+        console.log(" @Input() set product", value);
         this.dataProduct = value;
         this.images = value ? this.dataProduct.images.map((url, index) => {
             return {
@@ -61,7 +69,7 @@ export class ProductComponent implements OnInit {
             };
         }) : [];
     }
-    get product(): Product {
+    get product(): any {
         return this.dataProduct;
     }
 
@@ -71,7 +79,7 @@ export class ProductComponent implements OnInit {
         dots: false,
         autoplay: false,
         responsive: {
-            0: {items: 1}
+            0: { items: 1 }
         },
         rtl: this.direction.isRTL()
     };
@@ -82,9 +90,9 @@ export class ProductComponent implements OnInit {
         margin: 10,
         items: 5,
         responsive: {
-            480: {items: 5},
-            380: {items: 4},
-              0: {items: 3}
+            480: { items: 5 },
+            380: { items: 4 },
+            0: { items: 3 }
         },
         rtl: this.direction.isRTL()
     };
@@ -95,20 +103,60 @@ export class ProductComponent implements OnInit {
     addingToWishlist = false;
     addingToCompare = false;
 
+    modalRef: BsModalRef;
+
     constructor(
         @Inject(PLATFORM_ID) private platformId: any,
         private cart: CartService,
         private wishlist: WishlistService,
         private compare: CompareService,
         private photoSwipe: PhotoSwipeService,
-        private direction: DirectionService
+        private direction: DirectionService,
+        private modalService: BsModalService,
+        private itemservice:ProductService
+
+
     ) { }
+
+
+    SupplierPrice;
+    
+    openModal(template: TemplateRef<any>) {
+
+        this.modalRef = this.modalService.show(template);
+    }
+
 
     ngOnInit(): void {
         if (this.layout !== 'quickview' && isPlatformBrowser(this.platformId)) {
             this.photoSwipe.load().subscribe();
         }
+        console.log("ngOnInit " , this.product);  
+        this.GetSupplierProducts(this.product.id);
+       
     }
+
+    GetSupplierProducts(ProductId:any){
+        this.itemservice.GetSupplierProducts(ProductId).subscribe(
+            data=>{
+                console.log("GetSupplierProducts " , data);
+                this.SupplierProducts = data;
+            }
+
+        )
+    }
+
+
+
+    SelectASeller(item:any){
+        console.log("SelectASeller ",item , this.product);
+        this.product.SupplierID = item.SupplierID;
+        this.product.SupplierName = item.OrganizationName;
+        this.product.price = item.Price;
+        this.modalRef.hide();
+    }
+
+
 
     setActiveImage(image: ProductImage): void {
         this.images.forEach(eachImage => eachImage.active = eachImage === image);
@@ -130,7 +178,7 @@ export class ProductComponent implements OnInit {
         if (!this.addingToCart && this.product && this.quantity.value > 0) {
             this.addingToCart = true;
 
-            this.cart.add(this.product, this.quantity.value).subscribe({complete: () => this.addingToCart = false});
+            this.cart.add(this.product, this.quantity.value).subscribe({ complete: () => this.addingToCart = false });
         }
     }
 
@@ -138,7 +186,7 @@ export class ProductComponent implements OnInit {
         if (!this.addingToWishlist && this.product) {
             this.addingToWishlist = true;
 
-            this.wishlist.add(this.product).subscribe({complete: () => this.addingToWishlist = false});
+            this.wishlist.add(this.product).subscribe({ complete: () => this.addingToWishlist = false });
         }
     }
 
@@ -146,7 +194,7 @@ export class ProductComponent implements OnInit {
         if (!this.addingToCompare && this.product) {
             this.addingToCompare = true;
 
-            this.compare.add(this.product).subscribe({complete: () => this.addingToCompare = false});
+            this.compare.add(this.product).subscribe({ complete: () => this.addingToCompare = false });
         }
     }
 
@@ -168,7 +216,7 @@ export class ProductComponent implements OnInit {
                     const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
                     const rect = imageElement.getBoundingClientRect();
 
-                    return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
+                    return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
                 },
                 index: this.images.indexOf(image),
                 bgOpacity: .9,
@@ -183,3 +231,4 @@ export class ProductComponent implements OnInit {
         }
     }
 }
+

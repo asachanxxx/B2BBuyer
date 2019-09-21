@@ -4,7 +4,8 @@
         <div class="product__gallery">
             <div class="product-gallery" *ngIf="showGallery">
                 <div class="product-gallery__featured">
-                    <owl-carousel-o [options]="carouselOptions" (changed)="featuredCarouselTranslated($event)" appOwlPreventClick #featuredCarousel>
+                    <owl-carousel-o [options]="carouselOptions" (changed)="featuredCarouselTranslated($event)"
+                        appOwlPreventClick #featuredCarousel>
                         <ng-container *ngFor="let image of images">
                             <ng-template carouselSlide [id]="image.id">
                                 <a appClick (click)="openPhotoSwipe($event, image);" [href]="image.url" target="_blank">
@@ -15,12 +16,13 @@
                     </owl-carousel-o>
                 </div>
                 <div class="product-gallery__carousel">
-                    <owl-carousel-o [options]="thumbnailsCarouselOptions" [appFakeSlides]="images.length" #fakeSlides="appFakeSlides" appOwlPreventClick #thumbnailsCarousel>
+                    <owl-carousel-o [options]="thumbnailsCarouselOptions" [appFakeSlides]="images.length"
+                        #fakeSlides="appFakeSlides" appOwlPreventClick #thumbnailsCarousel>
                         <ng-container *ngFor="let image of images">
                             <ng-template carouselSlide [id]="image.id">
                                 <span class="product-gallery__carousel-item"
-                                   [ngClass]="{'product-gallery__carousel-item--active': image.active}"
-                                   appClick (click)="featuredCarousel.to(image.id); setActiveImage(image)">
+                                    [ngClass]="{'product-gallery__carousel-item--active': image.active}" appClick
+                                    (click)="featuredCarousel.to(image.id); setActiveImage(image)">
                                     <img class="product-gallery__carousel-image" [src]="image.url" alt="">
                                 </span>
                             </ng-template>
@@ -36,14 +38,14 @@
         <!-- .product__info -->
         <div class="product__info">
             <div class="product__wishlist-compare">
-                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip" data-placement="right" title="Wishlist"
-                        appClick (click)="addToWishlist()"
-                        [ngClass]="{'btn-loading': addingToWishlist}">
+                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                    data-placement="right" title="Wishlist" appClick (click)="addToWishlist()"
+                    [ngClass]="{'btn-loading': addingToWishlist}">
                     <app-icon name="wishlist-16" size="16"></app-icon>
                 </button>
-                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip" data-placement="right" title="Compare"
-                        appClick (click)="addToCompare()"
-                        [ngClass]="{'btn-loading': addingToCompare}">
+                <button type="button" class="btn btn-sm btn-light btn-svg-icon" data-toggle="tooltip"
+                    data-placement="right" title="Compare" appClick (click)="addToCompare()"
+                    [ngClass]="{'btn-loading': addingToCompare}">
                     <app-icon name="compare-16" size="16"></app-icon>
                 </button>
             </div>
@@ -53,7 +55,8 @@
                     <app-rating [value]="product.rating"></app-rating>
                 </div>
                 <div class="product__rating-legend">
-                    <a href="" appClick>{{ product.reviews }} Reviews</a><span>/</span><a href="" appClick>Write A Review</a>
+                    <a href="" appClick>{{ product.reviews }} Reviews</a><span>/</span><a href="" appClick>Write A
+                        Review</a>
                 </div>
             </div>
             <div class="product__description">
@@ -67,94 +70,102 @@
                 <li>Battery Capacity: 2 Ah</li>
             </ul>
             <ul class="product__meta">
-                <li class="product__meta-availability">Availability: <span class="text-success">In Stock</span></li>
-                <li>Brand: <a href="" appClick><span class="text-success">{{product.Brand}}</span></a></li>
-                <li>Model: <a href="" appClick><span class="text-success">{{product.Model}}</span></a></li>
-                <li>PartNo: <a href="" appClick><span class="text-success">{{product.PartNo}}</span></a></li>
+                <li class="product__meta-availability">Availability: <span class="text-dark font-weight-bold">In Stock</span></li>
+                <li>Brand: <a href="" appClick><span class="text-dark font-weight-bold">{{product.Brand}}</span></a></li>
+                <li>Model: <a href="" appClick><span class="text-dark font-weight-bold">{{product.Model}}</span></a></li>
+                <li>PartNo: <a href="" appClick><span class="text-dark font-weight-bold">{{product.PartNo}}</span></a></li>
             </ul>
         </div>
         <!-- .product__info / end -->
         <!-- .product__sidebar -->
         <div class="product__sidebar">
             <div class="product__availability">
-                Availability: <span class="text-success">In Stock</span>
+                Availability: <span class=".text-dark">In Stock</span>
             </div>
 
             <div class="product__prices">
                 <ng-container *ngIf="product.compareAtPrice">
-                    <span class="product__new-price">{{ product.price|currencyFormat }}</span>{{ ' ' }}
-                    <span class="product__old-price">{{ product.compareAtPrice|currencyFormat }}</span>
+                    
+                    <span class="product__new-price ">{{ product.price|currencyFormat }}</span>{{ ' ' }}
+
+                    <div>
+                        <span class="product__description text-secondary">From: </span>
+                        <span class="product__description mr-2 text-dark" style="font-size: 0.6em;"> <strong> {{product.SupplierName}} </strong></span>
+
+                        <!-- Supplier product Model -->
+                        <button type="button" class="btn btn-primary btn-xs mr-2" (click)="openModal(template)">See All
+                            Sellers </button>
+                        <button type="button" class="btn btn-primary btn-xs" (click)="openModal(template)">Rate Seller
+                        </button>
+                    </div>
+                    <ng-template #template>
+                        <div class="modal-header">
+                            <h4 class="modal-title pull-left">Other Sellers</h4>
+                            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div *ngIf="SupplierProducts">
+                                <div class="card mb-2" *ngFor="let item of SupplierProducts">
+                                    <div class="card-body m-1 p-1">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="mb-1"><strong>{{item.OrganizationName}}</strong></p>
+                                                <p class="mb-1">{{item.Price}}</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-primary btn-sm mt-3"
+                                                    (click)="SelectASeller(item)">
+                                                    Select Seller </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="!SupplierProducts">
+                                <div class="col-md-12">
+                                    <p>No other sellers having this product!.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </ng-template>
+                    <!-- Supplier product Model end -->
+
                 </ng-container>
                 <ng-container *ngIf="!product.compareAtPrice">
                     {{ product.price|currencyFormat }}
                 </ng-container>
             </div>
-            <!-- .product__options -->
+
             <form class="product__options">
-                <!-- <div class="form-group product__option">
-                    <label class="product__option-label">Color</label>
-                    <div class="input-radio-color">
-                        <div class="input-radio-color__list">
-                            <label class="input-radio-color__item input-radio-color__item--white" style="color: #fff;" data-toggle="tooltip" title="White">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item" style="color: #ffd333;" data-toggle="tooltip" title="Yellow">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item" style="color: #ff4040;" data-toggle="tooltip" title="Red">
-                                <input type="radio" name="color">
-                                <span></span>
-                            </label>
-                            <label class="input-radio-color__item input-radio-color__item--disabled" style="color: #4080ff;" data-toggle="tooltip" title="Blue">
-                                <input type="radio" name="color" disabled>
-                                <span></span>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="form-group product__option">
-                    <label class="product__option-label">Material</label>
-                    <div class="input-radio-label">
-                        <div class="input-radio-label__list">
-                            <label>
-                                <input type="radio" name="material">
-                                <span>Metal</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="material">
-                                <span>Wood</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="material" disabled>
-                                <span>Plastic</span>
-                            </label>
-                        </div>
-                    </div>
-                </div> -->
+
                 <div class="form-group product__option">
                     <label class="product__option-label">Quantity</label>
                     <div class="product__actions">
                         <div class="product__actions-item">
-                            <app-input-number aria-label="Quantity" class="product__quantity" size="lg" [min]="1" [formControl]="quantity"></app-input-number>
+                            <app-input-number aria-label="Quantity" class="product__quantity" size="lg" [min]="1"
+                                [formControl]="quantity"></app-input-number>
                         </div>
                         <div class="product__actions-item product__actions-item--addtocart">
                             <button type="button" class="btn btn-primary btn-lg"
-                                    [ngClass]="{'btn-loading': addingToCart}"
-                                    appClick (click)="addToCart()">Add to cart</button>
+                                [ngClass]="{'btn-loading': addingToCart}" appClick (click)="addToCart()">Add to
+                                cart</button>
                         </div>
                         <div class="product__actions-item product__actions-item--wishlist">
-                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist"
-                                    [ngClass]="{'btn-loading': addingToWishlist}"
-                                    appClick (click)="addToWishlist()">
+                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip"
+                                title="Wishlist" [ngClass]="{'btn-loading': addingToWishlist}" appClick
+                                (click)="addToWishlist()">
                                 <app-icon name="wishlist-16" size="16"></app-icon>
                             </button>
                         </div>
                         <div class="product__actions-item product__actions-item--compare">
-                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Compare"
-                                    [ngClass]="{'btn-loading': addingToCompare}"
-                                    appClick (click)="addToCompare()">
+                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip"
+                                title="Compare" [ngClass]="{'btn-loading': addingToCompare}" appClick
+                                (click)="addToCompare()">
                                 <app-icon name="compare-16" size="16"></app-icon>
                             </button>
                         </div>
@@ -167,9 +178,9 @@
         <div class="product__footer">
             <div class="product__tags tags">
                 <div class="tags__list">
-                    <a href="" appClick>Mounts</a>
-                    <a href="" appClick>Electrodes</a>
-                    <a href="" appClick>Chainsaws</a>
+                    <a href="" appClick>Electronics</a>
+                    <a href="" appClick>PC Parts</a>
+                    <a href="" appClick>Printers</a>
                 </div>
             </div>
 

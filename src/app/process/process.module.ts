@@ -17,6 +17,10 @@ import { ViewRatingsComponent } from './view-ratings/view-ratings.component';
 import { SeeallReviewsComponent } from './seeall-reviews/seeall-reviews.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ProductsearchpageComponent } from './productSearch/productsearchpage/productsearchpage.component';
+import { QuotationDetailsComponent } from './quotation-details/quotation-details.component';
+import { ApprovePoComponent } from './approve-po/approve-po.component';
+import { ApproveQuotationComponent } from './approve-quotation/approve-quotation.component';
+import { PoRequestsComponent } from './po-requests/po-requests.component';
 
 
 @NgModule({
@@ -25,7 +29,7 @@ import { ProductsearchpageComponent } from './productSearch/productsearchpage/pr
     DashboardComponent, 
     QuoteRequestComponent, 
     ReturnanItemComponent, 
-    ShippingChargesComponent, MessagesComponent, FileComplainsComponent, ComplainHistoryComponent, RateSupplierComponent, ViewRatingsComponent, SeeallReviewsComponent, ProductsearchpageComponent
+    ShippingChargesComponent, MessagesComponent, FileComplainsComponent, ComplainHistoryComponent, RateSupplierComponent, ViewRatingsComponent, SeeallReviewsComponent, ProductsearchpageComponent, QuotationDetailsComponent, ApprovePoComponent, ApproveQuotationComponent, PoRequestsComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +40,7 @@ import { ProductsearchpageComponent } from './productSearch/productsearchpage/pr
      SharedModule,
      WidgetsModule,
       CarouselModule
+
   ]
 })
 export class ProcessModule { }

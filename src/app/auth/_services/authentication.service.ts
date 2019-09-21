@@ -50,9 +50,7 @@ export class AuthenticationService {
     getUserInfo(loginDetails: DataForTocken): Observable<any> {
         const body = new HttpParams()
         .set('username', loginDetails.username)
-        .set('password', loginDetails.password)
-
-        return this.http.get(this.config.PrimaryAPI + "/api/Account/FindUser", {params: body})
+        return this.http.get(this.config.PrimaryAPI + "/api/Account/FindUserDataLogin", {params: body})
     }
 
     /*

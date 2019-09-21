@@ -1,0 +1,171 @@
+<app-page-header [header]="'Quote Request'" [breadcrumbs]="[
+    {label: 'Home',         url: '../../'},
+    {label: 'Quote Request', url: ''}
+]"></app-page-header>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="invoice-title">
+                <h2>Quotation </h2>
+                <h3 class="pull-right"> # 12345</h3>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-md-6">
+                  <address>
+                    <strong>Supplier Details:</strong><br>
+                    John Smith<br>
+                    1234 Main<br>
+                    Apt. 4B<br>
+                    Springfield, ST 54321
+                  </address>
+                </div>
+                <div class="col-md-6 text-right">
+                  <address>
+                    <strong>Client Details:</strong><br>
+                    Jane Smith<br>
+                    1234 Main<br>
+                    Apt. 4B<br>
+                    Springfield, ST 54321
+                  </address>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <address>
+                    <strong>Payment Method:</strong><br>
+                    Visa ending **** 4242<br>
+                    jsmith@email.com
+                  </address>
+                </div>
+                <div class="col-md-6 text-right">
+                  <address>
+                    <strong>Order Date:</strong><br>
+                    March 7, 2014<br><br>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><strong>Quotation summary</strong></h3>
+                </div>
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <table class="table table-condensed" style="font-size: 0.9em;">
+                      <thead>
+                        <tr>
+                          <th width="30%" scope="col">Product Name</th>
+                          <th width="15%" class="text-right" scope="col">Price</th>
+                          <th width="5%" scope="col">Qty</th>
+                          <th width="10%" scope="col">Status</th>
+                          <th width="15%" scope="col">Remarks</th>
+                          <th width="15%" scope="col" class="text-right">Total</th>
+                          <!-- <th width="5%" scope="col"></th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngIf="AllQuotationDetails">
+                          <tr *ngFor="let item of AllQuotationDetails; let i = index"
+                            (click)="selected_QuotationsDetails(item)" [class.active]="item == selectedRow">
+
+                            <td>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <strong> {{item.ProductName}}</strong>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12 text-secondary">
+                                  <ul>
+                                    <li>Service Warranty <span class="badge badge-dark badge-pill">6 Months</span></li>
+                                    <li>Comprehensive Warranty <span class="badge badge-dark badge-pill">12
+                                        Months</span></li>
+                                  </ul>
+
+                                </div>
+                              </div>
+                            </td>
+                            <td class="text-right">{{item.Price|currencyFormat}}</td>
+                            <td>{{item.Quantity}}</td>
+                            <td>
+                              <span class="badge badge-primary" *ngIf="item.Status ===1">Active</span>
+                              <span class="badge badge-success" *ngIf="item.Status ===2">Approved By Supplier</span>
+                            </td>
+                            <td>{{item.Remarks}}</td>
+                            <td class="text-right">{{item.Total|currencyFormat}}</td>
+                            <!-- <td>
+                              <button type="button" (click)="check_info(item,template)"
+                                class="btn btn-info btn-sm">Approve</button>
+                            </td> -->
+                          </tr>
+                          <!-- Details of the Quotations -->
+                          <tr>
+                            <td class="thick-line"></td>
+                            <td class="thick-line"></td>
+                            <td class="thick-line"></td>
+                            <td colspan="2" class="thick-line text-right"><strong>Subtotal</strong></td>
+                            <td colspan="2" class="thick-line text-right " style="font-size: 1.4em;"><strong>
+                                {{670.99|currencyFormat}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td class="border-0"></td>
+                            <td class="border-0"></td>
+                            <td class="border-0"></td>
+                            <td colspan="2" class="no-line text-right"><strong>Other Charges</strong></td>
+                            <td colspan="2" class="no-line text-right " style="font-size: 1.4em;"><strong>
+                                {{670.99|currencyFormat}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td class="border-0"></td>
+                            <td class="border-0"></td>
+                            <td class="border-0"></td>
+                            <td colspan="2" class="no-line text-right"><strong>Total</strong></td>
+                            <td colspan="2" class="no-line text-right " style="font-size: 1.4em;"><strong>
+                                {{670.99|currencyFormat}}</strong></td>
+                          </tr>
+
+
+                        </ng-container>
+
+
+
+                        <ng-container *ngIf="!AllQuotationDetails">
+                          <p><strong class="text-danger"> You have no quotations yet!</strong></p>
+                        </ng-container>
+
+
+
+                      </tbody>
+                    </table>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

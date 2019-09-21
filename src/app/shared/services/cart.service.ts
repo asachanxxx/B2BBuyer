@@ -66,7 +66,7 @@ export class CartService {
 
     add(product: Product, quantity: number, options: {name: string; value: string}[] = []): Observable<CartItem> {
         // timer only for demo
-        return timer(1000).pipe(map(() => {
+        return timer(10).pipe(map(() => {
             this.onAddingSubject$.next(product);
 
             let item = this.items.find(eachItem => {
@@ -102,7 +102,7 @@ export class CartService {
 
     update(updates: {item: CartItem, quantity: number}[]): Observable<void> {
         // timer only for demo
-        return timer(1000).pipe(map(() => {
+        return timer(10).pipe(map(() => {
             updates.forEach(update => {
                 const item = this.items.find(eachItem => eachItem === update.item);
 
@@ -118,12 +118,23 @@ export class CartService {
 
     remove(item: CartItem): Observable<void> {
         // timer only for demo
-        return timer(1000).pipe(map(() => {
+        return timer(10).pipe(map(() => {
             this.data.items = this.data.items.filter(eachItem => eachItem !== item);
 
             this.save();
             this.calc();
         }));
+    }
+
+    ClearCart(){
+        localStorage.removeItem('cartItems');
+        this.data= {
+            items: [],
+            quantity: 0,
+            subtotal: 0,
+            totals: [],
+            total: 0
+        };
     }
 
     private calc(): void {

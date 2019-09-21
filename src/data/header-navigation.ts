@@ -1,14 +1,6 @@
 import { NavigationLink } from '../app/shared/interfaces/navigation-link';
 
 export const navigation: NavigationLink[] = [
-    // {
-    //     label: 'Home', url: './', menu: {
-    //         type: 'menu',
-    //         items: [
-    //             { label: 'Home 1', url: '/classic' }
-    //         ]
-    //     }
-    // },
     {
         label: 'Shop', url: './shop', menu: {
             type: 'menu',
@@ -38,61 +30,21 @@ export const navigation: NavigationLink[] = [
             ]
         }
     },
-    // {
-    //     label: 'Account', url: './account', menu: {
-    //         type: 'menu',
-    //         items: [
-    //             { label: 'Login', url: './auth/login' },
-    //             { label: 'Dashboard', url: './account/dashboard' },
-    //             { label: 'Edit Profile', url: './auth/profile' },
-    //             { label: 'Order History', url: './account/orders' },
-    //             { label: 'Address Book', url: './account/addresses' },
-    //             { label: 'Change Password', url: './account/password' }
-    //         ]
-    //     }
-    // },
-    // {
-    //     label: 'Blog', url: './blog', menu: {
-    //         type: 'menu',
-    //         items: [
-    //             { label: 'Blog Classic', url: './blog/category-classic' },
-    //             { label: 'Blog Grid', url: './blog/category-grid' },
-    //             { label: 'Blog List', url: './blog/category-list' },
-    //             { label: 'Blog Left Sidebar', url: './blog/category-left-sidebar' },
-    //             { label: 'Post Page', url: './blog/post-classic' },
-    //             { label: 'Post Without Sidebar', url: './blog/post-full' }
-    //         ]
-    //     }
-    // },
-    // {
-    //     label: 'Pages', url: './site', menu: {
-    //         type: 'menu',
-    //         items: [
-    //             { label: 'About Us', url: './site/about-us' },
-    //             { label: 'Contact Us', url: './site/contact-us' },
-    //             { label: 'Contact Us Alt', url: './site/contact-us-alt' },
-    //             { label: '404', url: './site/not-found' },
-    //             { label: 'Terms And Conditions', url: './site/terms' },
-    //             { label: 'FAQ', url: './site/faq' },
-    //             { label: 'Components', url: './site/components' },
-    //             { label: 'Typography', url: './site/typography' }
-    //         ]
-    //     }
-    // },
     {
         label: 'Sales', url: './site',image:"fas fa-hand-holding-usd", menu: {
             type: 'menu',
             items: [
-                { label: 'Quote Request', url: './process/quote-request' },
-                // { label: 'Quotation History', url: './process/quotation-history' },
+                { label: 'Quote Requests', url: './process/quote-request' },
+                { label: 'PO Requests', url: './process/porequests' },
                 { label: 'Shipping Charges', url: './process/shipping-charges' },
             ]
         }
     }, {
-        label: 'Messaging',image:"far fa-envelope",  url: './site', menu: {
+        label: 'Approvals',image:"far fa-envelope",  url: './site', menu: {
             type: 'menu',
             items: [
-                { label: 'Messages', url: './process/Messages' },
+                { label: 'Quotation Approvals', url: './process/quotationapprove' },
+                { label: 'PO Approvals', url: './process/poapprove' },
             ]
         }
     }
@@ -117,7 +69,6 @@ export const navigation: NavigationLink[] = [
         label: 'Rating', url: './site',  image:"far fa-star",menu: {
             type: 'menu',
             items: [
-                { label: 'Rate a Supplier', url: './process/rate-a-supplier' },
                 { label: 'View Ratings', url: './process/view-ratings' },
                 { label: 'See all Reviews', url: './process/See-all-Reviews' },
             ]

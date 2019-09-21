@@ -39,6 +39,7 @@ import { ErrorInterceptor } from './auth/error.interceptor';
 import { AuthenticationService } from './auth/_services/authentication.service';
 import { RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { SafePipe } from './shared/pipes/SafePipe.pipe';
+import { UserDataservice } from './shared/services/CorparateServices/UserData.service';
 
 
 
@@ -77,6 +78,7 @@ import { SafePipe } from './shared/pipes/SafePipe.pipe';
     providers: [
         // { provide: LOCALE_ID, useValue: 'it' }
         GlobalParams,
+        UserDataservice,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         //{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         AuthenticationService,

@@ -5,17 +5,114 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <div class="content">
-        <h1 class="text-intro text-warning">{{config.commingsoontext}}</h1>
-        <p class="text-intro animated-middle fadeInUp">{{config.commingsooncontent}} </p>
+    <div class="col-md-12">
+
+      <div class="card">
+        <!-- <div class="card-header">
+            <h3>Quotations</h3>
+        </div> -->
+        <div class="card-body">
+          <h5 class="card-title">Quotation of the company</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <table class="table table-responsive" style="font-size: 0.9em;">
+            <thead class="thead-light">
+              <tr>
+                <th width="5%" scope="col">#</th>
+                <th width="15%" scope="col">Quotation Number</th>
+                <th width="30%" scope="col">Supplier Name</th>
+                <th width="15%" scope="col">Net Total</th>
+                <th width="15%" scope="col">Date</th>
+                <th width="10%" scope="col">Status</th>
+                <th width="10%" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="AllQuotations">
+                <tr *ngFor="let item of AllQuotations; let i = index" (click)="selected_Quotations(item)"
+                  [class.active]="item == selectedRow">
+                  <th scope="row">{{item.Id}}</th>
+                  <td>{{item.QNumber}}</td>
+                  <td>{{item.SupplierName}}</td>
+                  <td>{{item.NetTotal|currencyFormat}}</td>
+                  <td>{{item.Date | date: 'dd/MM/yyyy'}}</td>
+                  <td>
+                    <span class="badge badge-primary" *ngIf="item.Status ===1">Active</span>
+                    <span class="badge badge-success" *ngIf="item.Status ===2">Approved By Supplier</span>
+                  </td>
+                  <td>
+                    <button type="button" (click)="check_info(item,template)" class="btn btn-info btn-sm">Info</button>
+                  </td>
+                </tr>
+                <!-- Details of the Quotations -->
+
+
+              </ng-container>
+              <ng-container *ngIf="!AllQuotations">
+                <p><strong class="text-danger"> You have no quotations yet!</strong></p>
+              </ng-container>
+            </tbody>
+          </table>
+
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <img src="assets/images/bulk/UnderConstruction.png" alt="image" class="img-fluid rounded mx-auto d-block"
-        width="300px">
+
+
     </div>
   </div>
 </div>
 
 
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Details</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-responsive" style="font-size: 0.9em;">
+      <thead class="thead-light">
+        <tr>
+          <th width="5%" scope="col">#</th>
+          <th width="30%" scope="col">Product Name</th>
+          <th width="10%" scope="col">Price</th>
+          <th width="10%" scope="col">Quantity</th>
+          <th width="15%" scope="col">Total</th>
+          <th width="10%" scope="col">Status</th>
+          <th width="15%" scope="col">Remarks</th>
+          <th width="5%" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="AllQuotations">
+          <tr *ngFor="let item of AllQuotationDetails; let i = index" (click)="selected_QuotationsDetails(item)"
+            [class.active]="item == selectedRow">
+            <th scope="row">{{item.Id}}</th>
+            <td>{{item.ProductId}}</td>
+            <td>{{item.ProductName}}</td>
+            <td>{{item.Price|currencyFormat}}</td>
+            <td>{{item.Quantity|currencyFormat}}</td>
+            <td>{{item.Total|currencyFormat}}</td>
+            <td>
+              <span class="badge badge-primary" *ngIf="item.Status ===1">Active</span>
+              <span class="badge badge-success" *ngIf="item.Status ===2">Approved By Supplier</span>
+            </td>
+            <td>{{item.Remarks}}</td>
+            <td>
+              <button type="button" (click)="check_info(item,template)" class="btn btn-info btn-sm">Info</button>
+            </td>
+          </tr>
+          <!-- Details of the Quotations -->
+
+
+        </ng-container>
+        <ng-container *ngIf="!AllQuotations">
+          <p><strong class="text-danger"> You have no quotations yet!</strong></p>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+</ng-template>

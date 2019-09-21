@@ -86,15 +86,18 @@ export class PageLoginComponent implements OnInit {
                         console.log("localStorage.getItem(APIKey)", localStorage.getItem("APIKey"))
                         this.authenticationService.getUserInfo(tdata).subscribe(
                             userdata => {
-                                this.corpservice.CheckUserActiveStatus(userdata.Id).subscribe(
+                                this.corpservice.CheckUserActiveStatus(userdata.UserIdString).subscribe(
                                     data => {
                                         if (data == 1) {
-                                            console.log("userdata", userdata);
-                                            localStorage.setItem('UserId', userdata.Id);
+                                            console.log("userdata", data);
+                                            localStorage.setItem('UserId', userdata.UserIdString);
                                             localStorage.setItem('CurrentUserName', userdata.UserName);
+                                            localStorage.setItem('UserIdInt32', userdata.UserId);
+                                            localStorage.setItem('OrgId', userdata.OrgId);
+                                            localStorage.setItem('OrgName', userdata.OrgName);
 
                                             if (this.subcribed) {
-                                                this.corpservice.SubscribeUser(userdata.Id).subscribe(
+                                                this.corpservice.SubscribeUser(userdata.OrgName).subscribe(
                                                     data => {
                                                         console.log("User Subscribe to news latters");
                                                         this.route.navigate(["account/dashboard"]);
@@ -105,8 +108,12 @@ export class PageLoginComponent implements OnInit {
                                             }
                                         } else if (data == 2) {
                                             this.alertservice.error("User you are trying to log in is not activated yet. contact your corparate administrator(Supper User) to activate you!", this.config.MessageCaption);
-                                        } else {
-                                            this.alertservice.error("UserName Or Password Not valied . Please try again later!.", this.config.MessageCaption);
+                                        }
+                                        else if (data == 3) {
+                                            this.alertservice.error("This is not an approved user. contact your corparate administrator(Supper User) to Approve you!", this.config.MessageCaption);
+                                        }
+                                        else if (data == 4){
+                                            this.alertservice.error("The user is not a type of buyer. Please user our Sellar Portal to loged in", this.config.MessageCaption);
                                         }
                                     },
                                     error => {

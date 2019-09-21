@@ -23,4 +23,24 @@ export class ProductService {
         return val;
     }
    
+    GetSupplierProducts(id:number):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "Items/GetSupplierProducts?ProductId="+ id.toString())
+        return val;
+    }
+
+    GetSupplierWarranty(ProductId:any,SupplierID:any):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "Items/GetSupplierWarranty?ProductId="+ProductId+"&SupplierID="+SupplierID)
+        return val;
+    }
+
+    SaveProductReview(Review:any):Observable<any> {
+        console.log("Review ", Review)
+        var val =  this.http.post<any>(this.config.PrimaryAPI + "Items/SaveProductReview",Review)
+        return val;
+    }
+
+    GetReviewsForgivenProduct(id:number):Observable<any> {
+        var val =  this.http.get<any>(this.config.PrimaryAPI + "Items/GetReviewsForgivenProduct?ProductId="+ id.toString())
+        return val;
+    }
 }
